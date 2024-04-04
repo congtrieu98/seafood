@@ -3,30 +3,43 @@
  * @see https://v0.dev/t/PmwTvNfrVgf
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import MenuDropdownHeader from "@/components/frontend/components/menuDropdown/menu-dopdowwn";
 import Link from "next/link";
 
-export default function LandingPage() {
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
+      <header className="px-4 lg:px-6 h-14 flex flex-wrap justify-between leading-5  items-center bg-yellow-400">
         <Link className="flex items-center justify-center" href="#">
           <MountainIcon className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="#features"
-          >
-            Features
-          </Link>
+        <div className="flex justify-center items-center">
+          Mua hàng online liên hệ ngay hotline: 090.998.3514
+        </div>
+        <div className="flex justify-end items-end">
+          <MenuDropdownHeader />
+        </div>
+        <nav className=" flex gap-4 sm:gap-6">
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
             href="/sign-in"
           >
-            Sign In
+            Sig In
           </Link>
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="/sign-up"
+          >
+            Sign Up
+          </Link>
+          {/* <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#features"
+          >
+            Features
+          </Link> */}
         </nav>
+
       </header>
       <main className="flex-1">
         <section className="w-full py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48">
