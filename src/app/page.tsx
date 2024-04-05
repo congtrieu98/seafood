@@ -4,43 +4,132 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import MenuDropdownHeader from "@/components/frontend/components/menuDropdown/menu-dopdowwn";
+import ResultSearch from "@/components/frontend/components/search/resultSearch";
+import { ShoppingCart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex flex-wrap justify-between leading-5  items-center bg-yellow-400">
-        <Link className="flex items-center justify-center" href="#">
-          <MountainIcon className="h-6 w-6" />
-        </Link>
-        <div className="flex justify-center items-center">
-          Mua hàng online liên hệ ngay hotline: 090.998.3514
-        </div>
-        <div className="flex justify-end items-end">
-          <MenuDropdownHeader />
-        </div>
-        <nav className=" flex gap-4 sm:gap-6">
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="/sign-in"
-          >
-            Sig In
+      {/* chead */}
+      <div className="px-4 lg:px-6 h-14 bg-yellow-400">
+        <div className="flex max-w-5xl mx-auto mt-2 justify-between leading-5 items-center">
+          <Link className="flex items-center justify-center" href="#">
+            <MountainIcon className="h-6 w-6" />
           </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="/sign-up"
-          >
-            Sign Up
-          </Link>
-          {/* <Link
+          <div className="flex justify-center items-center">
+            Mua hàng online liên hệ ngay hotline: 090.998.3514
+          </div>
+          <div className="flex justify-end items-end">
+            <MenuDropdownHeader />
+          </div>
+          <nav className=" flex gap-4 sm:gap-6">
+            <Link
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="/sign-in"
+            >
+              Sig In
+            </Link>
+            <Link
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="/sign-up"
+            >
+              Sign Up
+            </Link>
+            {/* <Link
             className="text-sm font-medium hover:underline underline-offset-4"
             href="#features"
           >
             Features
           </Link> */}
-        </nav>
+          </nav>
+        </div>
+      </div>
 
-      </header>
+      {/* header */}
+      <div className="py-5 leading-5 bg-[#051c69]">
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between leading-5">
+          <Link className=" flex items-center justify-center" href="#">
+            <MountainIcon className="h-6 w-6" />
+          </Link>
+          <div className="flex justify-center text-lg leading-10 items-center text-[#f0ea1f]">
+            TƯƠI NGON TỪ NGUỒN
+          </div>
+          <div className="flex justify-center text-sm items-center">
+            <form action="/search" method="get" className="flex relative">
+              <input type="text" name="search" placeholder="Tìm kiếm" className="w-full rounded-lg border-transparent shadow-sm focus:border-blue-500 focus:outline-none px-5 py-2 text-md flex items-center" />
+              <button type="submit" className="absolute top-3 right-4 border-l-2">
+                <ResultSearch />
+              </button>
+            </form>
+          </div>
+          <div className="flex justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
+            <div className="cart-icon relative">
+              <ShoppingCart size={30} />
+              <span className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 ">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* menu service */}
+      <div className="py-5 leading-5 bg-[#051c69] border-t-2 border-t-white">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-5 leading-5 gap-4">
+          <div className="flex text-left text-white font-medium text-xs uppercase">
+            Danh mục
+          </div>
+          <div className="flex text-left self-stretch text-white font-medium text-xs uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+            <Image
+              src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
+              height={20}
+              width={20}
+              alt="like"
+              className="mr-2"
+            />
+            <span>
+              Cam kết chất lượng <br /> an toàn xuất xứ
+            </span>
+          </div>
+          <div className="flex text-left self-stretch text-white font-medium text-xs uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+            <Image
+              src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
+              height={20}
+              width={20}
+              alt="like"
+              className="mr-2"
+            />
+            <span>
+              1 đổi 1 trong 2h <br /> nhanh chóng, tận nhà
+            </span>
+          </div>
+          <div className="flex text-left self-stretch text-white font-medium text-xs uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+            <Image
+              src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
+              height={20}
+              width={20}
+              alt="like"
+              className="mr-2"
+            />
+            <span>
+              Chuẩn đóng gói <br /> sạch sẽ, tiện lợi
+            </span>
+          </div>
+          <div className="flex text-left text-white font-medium text-xs uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+            <Image
+              src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
+              height={20}
+              width={20}
+              alt="like"
+              className="mr-2"
+            />
+            <span>
+              Giao hàng nhanh <br /> free ship
+            </span>
+          </div>
+        </div>
+      </div>
+
       <main className="flex-1">
         <section className="w-full py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
