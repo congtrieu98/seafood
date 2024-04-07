@@ -1,10 +1,10 @@
 'use client'
 
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, JSX, SVGProps, useEffect, useRef, useState } from 'react'
+import { Fragment } from 'react'
 import { ChevronDown, ScanFace, Users } from 'lucide-react'
 
-export default function Example() {
+export default function MenuDropdown() {
     return (
         <div className="text-right">
             <Menu as="div" className="relative inline-block text-left">
