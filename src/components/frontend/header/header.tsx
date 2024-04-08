@@ -3,13 +3,57 @@
 
 import MenuDropdownHeader from "@/components/frontend/components/menu/menu-dopdowwn";
 import SearchForm from "@/components/frontend/components/search/searchForm";
-import { Menu, ShoppingCart } from "lucide-react";
+import { Menu, MoveLeft, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
+    const [open, setOpen] = useState(false)
+    // const sidebarRef = useRef(null);
+
+    const handleClickSidebar = () => {
+        setOpen(true)
+    }
+
     return (
-        <div>
+        <div className="relative">
+            {/* Sidebar responsive */}
+            <div id="sidebar" className={`absolute top-0 ${open ? "left-0" : "left-[-300px]"} duration-1000
+                p-2 w-[245px] overflow-y-auto text-center bg-gray-100 shadow z-50`}>
+                <div className="text-gray-900 text-xl" >
+                    <div>
+                        <div className="py-2.5 items-end border-b-2">
+                            <div className="flex flex-col items-end text-gray-900 cursor-pointer" onClick={() => setOpen(false)}>
+                                <MoveLeft />
+                            </div>
+                        </div>
+                        <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="bcn" />
+                            <div className="text-[15px] ml-4 text-gray-900">Bán chạy nhất</div>
+                        </div>
+                        <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="spnk" />
+                            <div className="text-[15px] ml-4 text-gray-900">Cua</div>
+                        </div>
+                        <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="spnk" />
+                            <div className="text-[15px] ml-4 text-gray-900">Cá</div>
+                        </div>
+
+                        <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="spnk" />
+                            <div className="text-[15px] ml-4 text-gray-900">Bạch tuột</div>
+                        </div>
+
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gray-300">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="spnk" />
+                            <div className="text-[15px] ml-4 text-gray-900">Sò, ngêu</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             {/* chead */}
             <div className="px-4 lg:px-6 h-20 bg-yellow-400">
                 <div className="flex max-w-screen-xl mx-auto justify-between leading-5 items-center">
@@ -45,10 +89,9 @@ const Header = () => {
                 </div>
             </div>
 
-
             {/* header */}
             <div className="py-5 md:px-5 px-0 leading-5 bg-[#051c69]">
-                <div className="relative max-w-screen-xl md:space-y-0 space-y-3 mx-auto md:flex flex-wrap items-center justify-between leading-5">
+                <div className="relative max-w-screen-lg md:space-y-0 space-y-3 mx-auto md:flex flex-wrap items-center justify-between leading-5">
                     {/* Logo */}
                     <Link className=" md:flex items-center justify-center hidden" href="/">
                         <img
@@ -59,10 +102,10 @@ const Header = () => {
                             className="rounded-full"
                         />
                     </Link>
-                    <div className="md:hidden cursor-pointer">
+                    <div className="md:hidden cursor-pointer" onClick={handleClickSidebar}>
                         <Menu color="#fff" size={30} />
                     </div>
-                    <div className="flex justify-center text-2xl leading-10 items-center text-[#f0ea1f]">
+                    <div className="flex justify-center text-2xl font-medium leading-10 items-center text-[#f0ea1f]">
                         TƯƠI NGON TỪ NGUỒN
                     </div>
 
