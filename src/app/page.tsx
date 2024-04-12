@@ -6,34 +6,16 @@
  * @see https://v0.dev/t/PmwTvNfrVgf
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-'use client'
+
+import CarouselPartner from "@/components/frontend/components/carouselMultiple/carouselPartner";
+import CarouselPost from "@/components/frontend/components/carouselMultiple/carouselPost";
 import SidebarCat from "@/components/frontend/components/sidebar/sidebarCat";
+import CustomerReview from "@/components/frontend/components/sliderBaner/customerReview";
 import HomeSliderBanner from "@/components/frontend/components/sliderBaner/homeSliderBanner";
 import Link from "next/link";
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
 export default function HomePage() {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
+
   return (
     <div className="flex flex-col min-h-screen">
 
@@ -437,113 +419,51 @@ export default function HomePage() {
       </div>
 
       {/* Section có thể bạn chưa biết */}
-      <div className="section pb-10">
+      <div className="section pb-10 px-4">
         <div className="max-w-screen-xl mx-auto">
-
-
-          <div className="grid grid-cols-4 pb-2">
-            <div className="col-span-3">
-              <div className="uppercase font-bold text-xl relative after:absolute 
-              after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 
-              hover:after:w-[230px] after:transition-all after:ease-in-out after:duration-300">Có thể bạn chưa biết</div>
-            </div>
-            <div className="uppercase font-bold text-xl relative after:absolute 
-              after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 
-              hover:after:w-[230px] after:transition-all after:ease-in-out after:duration-300">Ý kiến khách hàng</div>
-          </div>
-
           <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
             <div className="col-span-3">
-              {/* ========To Do ========== */}
-
-              {/* 
-              Nên đưa component carousel này ra component 
-              riêng để sd user client, page này là page home 
-              k được sử dụng use client
-              */}
-              <Carousel responsive={responsive}>
-
-                <div className="border rounded-2xl space-y-3 hover:shadow-lg mr-4">
-                  <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
-                  <div className="px-2 ">
-                    <div className="text-center text-2xl uppercase font-medium pt-2 pb-2 cursor-pointer">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Unde et porro nostrum facilis
-                      consectetur molestiae corporis, aliquid
-                      earum fugiat molestias soluta necessitatibus
-                      sapiente iusto ea in eius sed...
-                    </div>
-                    <div className="flex justify-between py-5">
-                      <div></div>
-                      <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chi tiết</div>
-                      <div></div>
-                    </div>
-                  </div>
+              {/* Carousel Post */}
+              <div className=" flex justify-between">
+                <div className="mb-4 uppercase font-bold text-xl relative after:absolute 
+              after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 
+              hover:after:w-[235px] after:transition-all after:ease-in-out after:duration-300">
+                  Có thể bạn chưa biết
                 </div>
+                <Link href={""} className="md:hidden">
+                  <div className="text-gray-400 relative after:absolute 
+              after:bottom-0 after:left-0 after:bg-blue-500 after:h-0.5 after:w-0 
+              hover:after:w-full after:transition-all after:ease-in-out after:duration-300">Xem thêm</div>
+                </Link>
+              </div>
 
-
-                <div className="border rounded-2xl space-y-3 hover:shadow-lg mr-4">
-                  <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
-                  <div className="px-2 ">
-                    <div className="text-center text-2xl uppercase font-medium pt-2 pb-2 cursor-pointer">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Unde et porro nostrum facilis
-                      consectetur molestiae corporis, aliquid
-                      earum fugiat molestias soluta necessitatibus
-                      sapiente iusto ea in eius sed...
-                    </div>
-                    <div className="flex justify-between py-5">
-                      <div></div>
-                      <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chi tiết</div>
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border rounded-2xl space-y-3 hover:shadow-lg mr-4">
-                  <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
-                  <div className="px-2 ">
-                    <div className="text-center text-2xl uppercase font-medium pt-2 pb-2 cursor-pointer">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Unde et porro nostrum facilis
-                      consectetur molestiae corporis...
-                    </div>
-                    <div className="flex justify-between py-5">
-                      <div></div>
-                      <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chi tiết</div>
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border rounded-2xl space-y-3 hover:shadow-lg mr-4">
-                  <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
-                  <div className="px-2 ">
-                    <div className="text-center text-2xl uppercase font-medium pt-2 pb-2 cursor-pointer">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Unde et porro nostrum facilis
-                      consectetur molestiae corporis...
-                    </div>
-                    <div className="flex justify-between py-5">
-                      <div></div>
-                      <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chi tiết</div>
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-
-              </Carousel>
+              <CarouselPost />
             </div>
 
-            <div className="">4</div>
+            <div className="">
+              <div className="uppercase my-4 md:mt-0 font-bold text-xl relative after:absolute
+              after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 
+              hover:after:w-[210px] after:transition-all after:ease-in-out after:duration-300">
+                Ý kiến khách hàng
+              </div>
+              <CustomerReview />
+            </div>
           </div>
-
-
         </div>
       </div>
 
+      {/* Partner */}
+      <div className="max-w-screen-xl mx-auto px-4 pb-10">
+        <div className="sm:grid grid-cols-3 mb-10 hidden">
+          <div className="h-0.5 bg-blue-500 mt-6"></div>
+          <div className="md:py-3 py-2 md:px-10 px-4 rounded-full text-white bg-blue-500 uppercase md:text-xl text-xs">Đối tác của hải sản miền nam</div>
+          <div className="h-0.5 bg-blue-500 mt-6"></div>
+        </div>
+        <CarouselPartner />
+      </div>
 
 
+      {/* Footer */}
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-neutral-500 dark:text-neutral-400">
           © 2024 Acme Inc. All rights reserved.
