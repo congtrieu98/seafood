@@ -6,7 +6,7 @@ import { ChevronDown, ScanFace, Users } from 'lucide-react'
 
 export default function MenuDropdown() {
     return (
-        <div className="text-right">
+        <div className="text-right z-20">
             <Menu as="div" className="relative inline-block text-left">
                 <div>
                     <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium hover:text-violet-100 text-[#071c69] hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">

@@ -16,6 +16,23 @@ const Header = () => {
         setOpen(true)
     }
 
+    if (typeof window !== 'undefined') {
+        window.addEventListener('scroll', function () {
+            var element = document.getElementById('fixedElement');
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 0) {
+                if (element) {
+                    element.style.top = '0';
+                }
+            } else {
+                if (element) {
+                    element.style.top = '80px';
+                }
+            }
+        });
+    }
+
+
     return (
         <div className="relative">
             {/* Sidebar responsive */}
@@ -90,7 +107,7 @@ const Header = () => {
             </div>
 
             {/* header */}
-            <div className="py-5 md:px-5 px-0 leading-5 bg-[#051c69]">
+            <div id="fixedElement" className="py-5 md:px-5 px-0 leading-5 bg-[#051c69] z-10 sm:sticky fixed top-20 left-0 right-0">
                 <div className="relative max-w-screen-lg md:space-y-0 space-y-3 mx-auto md:flex flex-wrap items-center justify-between leading-5">
                     {/* Logo */}
                     <Link className=" md:flex items-center justify-center hidden" href="/">
@@ -130,18 +147,17 @@ const Header = () => {
             </div>
 
             {/* menu service */}
-            <div className="relative leading-5 bg-[#051c69] border-t-2 border-t-white hidden md:block">
+            <div className="relative leading-5 bg-[#051c69] border-t-[1px] border-t-white hidden md:block">
 
-                <div className="max-w-screen-xl mx-auto grid grid-cols-5 leading-5 gap-4">
+                <div className="max-w-screen-xl mx-auto grid grid-cols-5 text-center leading-5 gap-4">
 
                     <div className="">
                         <div className="p-4 flex items-center bg-[#f0ea1f]">
                             <Menu />
                             <h1 className="text-[15px] ml-3 text-xl text-gray-900 font-bold">Danh mục</h1>
-                            {/* <i className="bi bi-x ml-20 cursor-pointer lg:hidden"></i> */}
                         </div>
                     </div>
-                    <div className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+                    <Link href={"/"} className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm space-x-2">
                         <div>
                             <Image
                                 src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
@@ -155,8 +171,8 @@ const Header = () => {
                         <div className="flex flex-wrap">
                             Cam kết chất lượng an toàn xuất xứ
                         </div>
-                    </div>
-                    <div className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+                    </Link>
+                    <Link href={"/"} className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm space-x-2">
                         <div>
                             <Image
                                 src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
@@ -169,8 +185,8 @@ const Header = () => {
                         <div className="flex flex-wrap">
                             1 đổi 1 trong 2h  nhanh chóng, tận nhà
                         </div>
-                    </div>
-                    <div className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+                    </Link>
+                    <Link href={"/"} className="flex text-left self-stretch text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm space-x-2">
                         <div>
                             <Image
                                 src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
@@ -183,8 +199,8 @@ const Header = () => {
                         <div className="flex flex-wrap">
                             Chuẩn đóng gói sạch sẽ, tiện lợi
                         </div>
-                    </div>
-                    <div className="flex text-left text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm">
+                    </Link>
+                    <Link href={"/"} className="flex text-left text-white font-medium text-xs leading-5 uppercase hover:bg-[#f0ea1f] p-2 rounded-sm space-x-2">
                         <div>
                             <Image
                                 src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1_pc.png?v=1086"
@@ -197,7 +213,7 @@ const Header = () => {
                         <div className="flex flex-wrap">
                             Giao hàng nhanh free ship
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>

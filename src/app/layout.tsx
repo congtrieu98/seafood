@@ -4,6 +4,7 @@ import "./globals.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/frontend/header/header";
+import Footer from "@/components/frontend/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>{
           children
         }</ThemeProvider>
+        {/* Footer */}
+        <Footer />
       </body>
     </html>
   );
