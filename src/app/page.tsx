@@ -7,18 +7,16 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-import CarouselPartner from "@/components/frontend/components/carouselMultiple/carouselPartner";
 import CarouselPost from "@/components/frontend/components/carouselMultiple/carouselPost";
 import SidebarCat from "@/components/frontend/components/sidebar/sidebarCat";
 import CustomerReview from "@/components/frontend/components/sliderBaner/customerReview";
 import HomeSliderBanner from "@/components/frontend/components/sliderBaner/homeSliderBanner";
-import { Dot, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export default function HomePage() {
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
 
       {/* section banner */}
       <section className="w-full flex max-w-screen-xl mx-auto sm:mt-0 mt-[182px]">

@@ -35,7 +35,6 @@ const CarouselPost = () => {
             autoPlay={true}
             rewind={true}
             rewindWithAnimation={true}
-        // rtl={true}
         >
             <div className="border rounded-2xl hover:rounded-2xl space-y-3 hover:shadow-lg mr-4">
                 <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />

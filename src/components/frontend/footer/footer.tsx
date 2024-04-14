@@ -139,7 +139,7 @@ function Footer() {
                                         Công bố sản phẩm
                                     </div>
                                 </Link>
-                                <Link href={"/"} className="flex cursor-pointer items-center ml-10">
+                                <Link href={"/page/bo-tieu-chuan-cac-san-pham"} className="flex cursor-pointer items-center ml-10">
                                     <Dot className="hover:text-white" size={40} />
                                     <div className="relative after:absolute 
             after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 

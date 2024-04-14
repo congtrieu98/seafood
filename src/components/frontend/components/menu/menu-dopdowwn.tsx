@@ -3,6 +3,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { ChevronDown, ScanFace, Users } from 'lucide-react'
+import Link from 'next/link'
 
 export default function MenuDropdown() {
     return (
@@ -30,8 +31,8 @@ export default function MenuDropdown() {
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <button
-                                        className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                    <Link href={"/page/about-us"}
+                                        className={`${active ? 'bg-blue-500 text-white' : 'text-gray-900'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -46,13 +47,13 @@ export default function MenuDropdown() {
                                             />
                                         )}
                                         Giới thiệu
-                                    </button>
+                                    </Link>
                                 )}
                             </Menu.Item>
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
-                                        className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                        className={`${active ? 'bg-blue-500 text-white' : 'text-gray-900'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
