@@ -36,14 +36,14 @@ const CarouselPost = () => {
             rewind={true}
             rewindWithAnimation={true}
         >
-            <div className="border rounded-2xl hover:rounded-2xl space-y-3 hover:shadow-lg mr-4">
+            <div className="border rounded-2xl space-y-3 hover:shadow-lg mr-4">
                 <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
                 <div className="px-2 ">
                     <div className="text-center text-xl uppercase font-medium pt-2
                      mb-2 leading-7 cursor-pointer seafood_truncate-2">
                         Hải sản hoàng gia phục vụ tết nguyen đáng 2024 xuyên suốt các ngày
                     </div>
-                    <div className="text-left seafood_truncate-4">
+                    <div className="text-center seafood_truncate-3">
                         Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Unde et porro nostrum facilis
                         consectetur molestiae corporis, aliquid
@@ -62,7 +62,7 @@ const CarouselPost = () => {
                 <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
                 <div className="px-2 ">
                     <div className="text-center text-xl uppercase font-medium pt-2 mb-2 leading-7 cursor-pointer seafood_truncate-2">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left seafood_truncate-4">Lorem ipsum dolor sit amet consectetur
+                    <div className="text-center seafood_truncate-3">Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Unde et porro nostrum facilis
                         consectetur molestiae corporis, aliquid
                         earum fugiat molestias soluta necessitatibus
@@ -80,7 +80,7 @@ const CarouselPost = () => {
                 <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
                 <div className="px-2 ">
                     <div className="text-center text-xl uppercase font-medium pt-2 mb-2 leading-7 cursor-pointer seafood_truncate-2">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left seafood_truncate-4">Lorem ipsum dolor sit amet consectetur
+                    <div className="text-center seafood_truncate-3">Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Unde et porro nostrum facilis
                         consectetur molestiae corporis
                     </div>
@@ -96,7 +96,7 @@ const CarouselPost = () => {
                 <img src="https://file.hstatic.net/1000182631/article/tet2024.seo_3a0ecdc12a39493988c0c34e84132e56_large.jpg" alt="" className="rounded-2xl cursor-pointer" />
                 <div className="px-2 ">
                     <div className="text-center text-xl uppercase font-medium pt-2 mb-2 leading-7 cursor-pointer seafood_truncate-2">Hải sản hoàng gia phục vụ tết</div>
-                    <div className="text-left seafood_truncate-4">Lorem ipsum dolor sit amet consectetur
+                    <div className="text-center seafood_truncate-3">Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Unde et porro nostrum facilis
                         consectetur molestiae corporis
                     </div>
