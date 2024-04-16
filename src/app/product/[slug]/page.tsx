@@ -2,10 +2,24 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 'use client'
+import { Gift, Minus, Plus } from "lucide-react";
+import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 
 
-function ProductDetail() {
+export default function ProductDetail() {
+    const [qty, setQty] = useState(0)
+
+    const handleUnIncrement = () => {
+        const newQty = qty - 1
+        setQty(newQty)
+    }
+
+    const handleIncrement = () => {
+        const newQty = qty + 1
+        setQty(newQty)
+
+    }
     return (
         <div className="max-w-screen-xl mx-auto md:px-0 px-4">
             <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:mt-10 pt-4">
@@ -47,19 +61,38 @@ function ProductDetail() {
                                 <div>Chỉ Cân Hàng Không Cân Nước</div>
                                 <div>Gọi Ngay Hotline 📞0906789543📞 Để Được Tư Vấn Và Mua Hàng</div>
                             </div>
-                            <div className="bg-pink-100 p-4">
-                                <div className="text-xl font-bold text-blue-500">690.000đ</div>
+                            <div className="bg-pink-50 p-4">
+                                <div className="flex justify-start gap-2 text-center flex-wrap">
+                                    <div className="text-blue-500 font-bold text-xl">690.000đ</div>
+                                    <div className="text-[#939393] line-through font-medium">690.000đ</div>
+                                    <div className="bg-orange-500 rounded-md p-1 items-center">-45%</div>
+                                </div>
                                 <div className="text-gray-400">
                                     Khối lượng: 1kg
                                 </div>
                             </div>
-                            <div className="mt-4">Khuyến mãi</div>
+                            <div className="mt-4 border border-red-600 rounded-lg">
+                                <div className="flex px-2 py-3 bg-red-600 space-x-2 rounded-t-lg">
+                                    <Gift color="#ffff" />
+                                    <div className="text-white font-bold">Khuyến mãi</div>
+                                </div>
+                                <div className="px-2 py-3 space-y-2">
+                                    <div>🎁 Miễn phí hấp + Tặng sốt chấm muối ớt hồng trứ danh</div>
+                                    <div>🎁 Tặng 50,000đ Khi Đăng Ký Thành Viên</div>
+                                    <div>🔥 Ưu Đãi Thành Viên Lên Đến 10%</div>
+                                </div>
+
+                            </div>
                             <div className="mt-4">
-                                <div className="font-bold">Số lượng: - 0 +</div>
+                                <div className="font-bold flex justify-start mt-3">Số lượng:
+                                    <button className="ml-5 p-1.5 bg-gray-200 rounded-sm" disabled={qty === 0} onClick={handleUnIncrement}><Minus size={18} /></button>
+                                    <input value={qty} className="w-3/12 text-center" onChange={(e) => { setQty(Number(e.target.value)) }} />
+                                    <button className="p-1.5 bg-gray-200 rounded-sm" onClick={handleIncrement}><Plus size={18} /></button>
+                                </div>
                             </div>
                             <div className="flex justify-center gap-4 mt-4">
                                 <button className="px-4 py-2 text-xl text-white bg-blue-500 uppercase rounded-md">Thêm vào giỏ</button>
-                                <button className="px-4 py-2 text-xl text-white bg-red-500 uppercase rounded-md">Mua ngay</button>
+                                <button className="px-4 py-2 text-xl text-white bg-red-700 uppercase rounded-md">Mua ngay</button>
                             </div>
 
                             {/* field note */}
@@ -94,5 +127,3 @@ function ProductDetail() {
         </div>
     );
 }
-
-export default ProductDetail;
