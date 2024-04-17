@@ -2,9 +2,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 'use client'
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Gift, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 
 export default function ProductDetail() {
@@ -45,6 +57,7 @@ export default function ProductDetail() {
 
                             </Carousel>
                         </div>
+
                         <div className="">
                             {/* title */}
                             <div className="text-xl font-medium mb-10">Ghe Xanh Laoi 1 - Song</div>
@@ -64,11 +77,31 @@ export default function ProductDetail() {
                             <div className="bg-pink-50 p-4">
                                 <div className="flex justify-start gap-2 text-center flex-wrap">
                                     <div className="text-blue-500 font-bold text-xl">690.000đ</div>
-                                    <div className="text-[#939393] line-through font-medium">690.000đ</div>
-                                    <div className="bg-orange-500 rounded-md p-1 items-center">-45%</div>
+                                    <div className="text-[#939393] line-through font-medium">890.000đ</div>
+                                    <div className="flex items-center px-2 py-1 bg-red-500 text-white rounded-md">
+                                        <span className="font-bold text-lg">-19%</span>
+                                    </div>
                                 </div>
                                 <div className="text-gray-400">
                                     Khối lượng: 1kg
+                                </div>
+                            </div>
+
+                            <div className="my-5">
+                                <div className="space-y-4">
+                                    <div className="font-bold">Chọn:</div>
+                                    <RadioGroup defaultValue="default">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="flex items-center space-x-2">
+                                                <RadioGroupItem value="default" id="r1" />
+                                                <Label htmlFor="r1">1 kg (size 4 - 5 con)</Label>
+                                            </div>
+                                            <div className="flex items-center space-x-2">
+                                                <RadioGroupItem value="comfortable" id="r2" />
+                                                <Label htmlFor="r2">0,5 kg</Label>
+                                            </div>
+                                        </div>
+                                    </RadioGroup>
                                 </div>
                             </div>
                             <div className="mt-4 border border-red-600 rounded-lg">
@@ -95,26 +128,159 @@ export default function ProductDetail() {
                                 <button className="px-4 py-2 text-xl text-white bg-red-700 uppercase rounded-md">Mua ngay</button>
                             </div>
 
-                            {/* field note */}
+
+                            {/* FIELD NOTE */}
+
                             <div className="py-2">
                                 Do đặc tính của sản phẩm nên trọng lượng thực tế có thể chênh lệch so với số lượng bạn đặt hàng. Hải Sản Hoàng Gia sẽ xác nhận lại với bạn khi có sự thay đổi.
                             </div>
 
+
+
+                            {/* ======= THƯỜNG ĐC CHẾ BIẾN ======== */}
+
+
                             <div className="py-4">
-                                <div className="font-bold uppercase">
+                                <div className="font-bold uppercase mb-3">
                                     thường được chế biến
                                 </div>
+
                                 <div className="grid grid-cols-2 gap-2">
-                                    <div>
-                                        <div>A</div>
-                                        <div>A</div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center space-x-2">
+                                            <Checkbox id="terms" />
+                                            <label
+                                                htmlFor="terms"
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <img className="rounded-md" src="https://product.hstatic.net/1000182631/product/nuong_muoi_b431913ee39d48f7b953b92a55b8f8f2_small.jpg" alt="" />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <div>Phí nướng muối ớt</div>
+                                                        <Select defaultValue="apple">
+                                                            <SelectTrigger className="w-full py-0">
+                                                                <SelectValue placeholder="Select a fruit" />
+                                                            </SelectTrigger>
+                                                            <SelectContent >
+                                                                <SelectGroup>
+                                                                    <SelectItem value="apple">Apple</SelectItem>
+                                                                    <SelectItem value="banana">Banana</SelectItem>
+                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
+                                                                    <SelectItem value="grapes">Grapes</SelectItem>
+                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                </SelectGroup>
+                                                            </SelectContent>
+                                                        </Select>
+                                                        <div className="text-blue-500 font-semibold">38.000đ</div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center space-x-2">
+                                            <Checkbox id="terms" />
+                                            <label
+                                                htmlFor="terms"
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <div className="">
+                                                        <img src="https://product.hstatic.net/1000182631/product/nuong_muoi_b431913ee39d48f7b953b92a55b8f8f2_small.jpg" alt="" />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <div>Phí ncháy tỏi</div>
+                                                        <Select defaultValue="apple">
+                                                            <SelectTrigger className="w-full py-0">
+                                                                <SelectValue placeholder="Select a fruit" />
+                                                            </SelectTrigger>
+                                                            <SelectContent >
+                                                                <SelectGroup>
+                                                                    <SelectItem value="apple">Apple</SelectItem>
+                                                                    <SelectItem value="banana">Banana</SelectItem>
+                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
+                                                                    <SelectItem value="grapes">Grapes</SelectItem>
+                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                </SelectGroup>
+                                                            </SelectContent>
+                                                        </Select>
+                                                        <div className="text-blue-500 font-semibold">40.000đ</div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div>B</div>
-                                        <div>B</div>
+
+                                    <div className="space-y-3">
+                                        <div className="flex items-center space-x-2">
+                                            <Checkbox id="terms" />
+                                            <label
+                                                htmlFor="terms"
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <div className="">
+                                                        <img src="https://product.hstatic.net/1000182631/product/nuong_muoi_b431913ee39d48f7b953b92a55b8f8f2_small.jpg" alt="" />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <div>Phí nướng muối ớt</div>
+                                                        <Select defaultValue="apple">
+                                                            <SelectTrigger className="w-full py-0">
+                                                                <SelectValue placeholder="Select a fruit" />
+                                                            </SelectTrigger>
+                                                            <SelectContent >
+                                                                <SelectGroup>
+                                                                    <SelectItem value="apple">Apple</SelectItem>
+                                                                    <SelectItem value="banana">Banana</SelectItem>
+                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
+                                                                    <SelectItem value="grapes">Grapes</SelectItem>
+                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                </SelectGroup>
+                                                            </SelectContent>
+                                                        </Select>
+                                                        <div className="text-blue-500 font-semibold">38.000đ</div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center space-x-2">
+                                            <Checkbox id="terms" />
+                                            <label
+                                                htmlFor="terms"
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <div className="">
+                                                        <img src="https://product.hstatic.net/1000182631/product/nuong_muoi_b431913ee39d48f7b953b92a55b8f8f2_small.jpg" alt="" />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <div>Phí ncháy tỏi</div>
+                                                        <Select defaultValue="apple">
+                                                            <SelectTrigger className="w-full py-0">
+                                                                <SelectValue placeholder="Select a fruit" />
+                                                            </SelectTrigger>
+                                                            <SelectContent >
+                                                                <SelectGroup>
+                                                                    <SelectItem value="apple">Apple</SelectItem>
+                                                                    <SelectItem value="banana">Banana</SelectItem>
+                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
+                                                                    <SelectItem value="grapes">Grapes</SelectItem>
+                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                </SelectGroup>
+                                                            </SelectContent>
+                                                        </Select>
+                                                        <div className="text-blue-500 font-semibold">40.000đ</div>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
 
                     </div>
@@ -124,6 +290,8 @@ export default function ProductDetail() {
                     Tu van dat hang
                 </div>
             </div>
+
+
         </div>
     );
 }
