@@ -5,7 +5,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Gift, Minus, Plus } from "lucide-react";
+import { AlignRight, Gift, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import {
@@ -17,6 +17,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import Link from "next/link";
+import Tabs from "@/components/frontend/components/tabs/tabs";
 
 
 export default function ProductDetail() {
@@ -281,16 +283,176 @@ export default function ProductDetail() {
                             </div>
 
 
+                            <div className="py-4 items-center text-end">
+                                <div className=""><span className=" font-semibold">Tổng tiền:</span> <span className="font-bold text-blue-500">10.0000</span></div>
+                                <button className="py-2 px-4 bg-blue-500 text-white rounded-md uppercase font-semibold">Thanh toán</button>
+                            </div>
+
                         </div>
 
                     </div>
+
+                    {/* tabs component */}
+                    <div className="border border-t border-t-blue-500"></div>
+                    <Tabs />
                 </div>
 
                 <div className="col-span-1">
-                    Tu van dat hang
+                    <div className="mb-1 bg-slate-100">
+                        <div className="uppercase text-sm p-2 border-b border-b-slate-500 ">
+                            Tu vấn đặt hàng
+                        </div>
+                        <div className="flex px-5 py-3">
+                            <div className="mr-2">
+                                <img src="https://theme.hstatic.net/1000182631/1000966139/14/hotline-icon.png?v=1110" alt="" />
+                            </div>
+                            <div className="">
+                                <div className="font-bold text-orange-400">090 996 3514</div>
+                                <div className="">8h-21h (từ T2 - Chủ Nhật)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
+                        <div className="mr-2">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1.png?v=1110" alt="" />
+                        </div>
+                        <div className="">
+                            <div className="font-medium uppercase">CAM KẾT CHẤT LƯỢNG</div>
+                            <div className="text-gray-400 text-sx">An toàn xuất xứ</div>
+                        </div>
+                    </Link>
+                    <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
+                        <div className="mr-2">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_2.png?v=1110" alt="" />
+                        </div>
+                        <div className="">
+                            <div className="font-medium uppercase">1 đổi 1 trong 2h</div>
+                            <div className="text-gray-400 text-sx">Nhanh chóng, tận nhà</div>
+                        </div>
+                    </Link>
+                    <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
+                        <div className="mr-2">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_3.png?v=1110" alt="" />
+                        </div>
+                        <div className="">
+                            <div className="font-medium uppercase">Chuẩn đóng gói</div>
+                            <div className="text-gray-400 text-sx">Sạch sẽ, tiện lợi</div>
+                        </div>
+                    </Link>
+                    <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100 mb-1">
+                        <div className="mr-2">
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_4.png?v=1110" alt="" />
+                        </div>
+                        <div className="">
+                            <div className="font-medium uppercase">Giao hàng nhanh</div>
+                            <div className="text-gray-400 text-sx">Free ship</div>
+                        </div>
+                    </Link>
+
+                    <div className="px-5 py-3 bg-slate-100 mb-1">
+                        <div>
+                            <img src="https://theme.hstatic.net/1000182631/1000966139/14/nhqa-icon.png?v=1110" alt="" />
+                        </div>
+                        <div className="">
+                            <div className="pt-2">
+                                Liên hệ qua số: <span className="font-bold text-orange-400">090 996 3514</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-slate-100 py-2">
+                        <div className="bg-blue-500 p-2 flex justify-between">
+                            <div className="text-white uppercase font-medium">CÓ THỂ BẠN MUỐN XEM THÊM</div>
+                            <AlignRight color="#fff" />
+                        </div>
+
+                        <div className="p-2">
+                            <div className="border rounded-sm p-2 space-y-2 hover:shadow-lg bg-white">
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="relative">
+                                    <div className="absolute top-0 left-0 text-white text-sm p-1.5 bg-black bg-opacity-60 rounded-md">Có 2 lựa chọn</div>
+                                    <img src="https://product.hstatic.net/1000182631/product/z5283249145272_e2dedfa5565fa3f51f52969a445ed089_2fdc3af97dd94e12a2559abcb126d061_medium.jpg" alt="hello" className="w-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300" />
+                                </Link>
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="pt-2 font-semibold flex seafood_truncate-1 items-center text-center hover:text-blue-500">Ghẹ xanh loại 1-sống</Link>
+                                <div className="flex justify-center gap-2 text-center flex-wrap">
+                                    <div className="text-blue-500 font-bold text-sm">690.000đ</div>
+                                    <div className="text-[#939393] line-through font-medium text-sm">690.000đ</div>
+                                    <div className="bg-orange-500 rounded-md text-xs p-1 items-center">-45%</div>
+                                </div>
+
+                                <div className="flex justify-center items-center text-center pb-5">
+                                    <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chọn mua</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* item 1 */}
+
+                        <div className="p-2">
+                            <div className="border rounded-sm p-2 space-y-2 hover:shadow-lg bg-white">
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="relative transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300">
+                                    <div className="absolute top-0 left-0 text-white text-sm p-1.5 bg-black bg-opacity-60 rounded-md">Có 2 lựa chọn</div>
+                                    <img src="https://product.hstatic.net/1000182631/product/z5283249145272_e2dedfa5565fa3f51f52969a445ed089_2fdc3af97dd94e12a2559abcb126d061_medium.jpg" alt="hello" className="w-full" />
+                                </Link>
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="pt-2 font-semibold flex seafood_truncate-1 items-center text-center hover:text-blue-500">Ghẹ xanh loại 1-sống</Link>
+                                <div className="flex justify-center gap-2 text-center flex-wrap">
+                                    <div className="text-blue-500 font-bold text-sm">690.000đ</div>
+                                    <div className="text-[#939393] line-through font-medium text-sm">690.000đ</div>
+                                    <div className="bg-orange-500 rounded-md text-xs p-1 items-center">-45%</div>
+                                </div>
+
+                                <div className="flex justify-center items-center text-center pb-5">
+                                    <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chọn mua</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* item 2 */}
+
+                        <div className="p-2">
+                            <div className="border rounded-sm p-2 space-y-2 hover:shadow-lg bg-white">
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="relative transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300">
+                                    <div className="absolute top-0 left-0 text-white text-sm p-1.5 bg-black bg-opacity-60 rounded-md">Có 2 lựa chọn</div>
+                                    <img src="https://product.hstatic.net/1000182631/product/z5283249145272_e2dedfa5565fa3f51f52969a445ed089_2fdc3af97dd94e12a2559abcb126d061_medium.jpg" alt="hello" className="w-full" />
+                                </Link>
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="pt-2 font-semibold flex seafood_truncate-1 items-center text-center hover:text-blue-500">Ghẹ xanh loại 1-sống</Link>
+                                <div className="flex justify-center gap-2 text-center flex-wrap">
+                                    <div className="text-blue-500 font-bold text-sm">690.000đ</div>
+                                    <div className="text-[#939393] line-through font-medium text-sm">690.000đ</div>
+                                    <div className="bg-orange-500 rounded-md text-xs p-1 items-center">-45%</div>
+                                </div>
+
+                                <div className="flex justify-center items-center text-center pb-5">
+                                    <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chọn mua</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* item 3 */}
+
+                        <div className="p-2">
+                            <div className="border rounded-sm p-2 space-y-2 hover:shadow-lg bg-white">
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="relative ">
+                                    <div className="absolute top-0 left-0 text-white text-sm p-1.5 bg-black bg-opacity-60 rounded-md">Có 2 lựa chọn</div>
+                                    <img src="https://product.hstatic.net/1000182631/product/z5283249145272_e2dedfa5565fa3f51f52969a445ed089_2fdc3af97dd94e12a2559abcb126d061_medium.jpg" alt="hello" className="w-full transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300" />
+                                </Link>
+                                <Link href={"/product/ghe-xanh-loai-1-song"} className="pt-2 font-semibold flex seafood_truncate-1 items-center text-center hover:text-blue-500">Ghẹ xanh loại 1-sống</Link>
+                                <div className="flex justify-center gap-2 text-center flex-wrap">
+                                    <div className="text-blue-500 font-bold text-sm">690.000đ</div>
+                                    <div className="text-[#939393] line-through font-medium text-sm">690.000đ</div>
+                                    <div className="bg-orange-500 rounded-md text-xs p-1 items-center">-45%</div>
+                                </div>
+
+                                <div className="flex justify-center items-center text-center pb-5">
+                                    <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chọn mua</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* item 4 */}
+                    </div>
+
                 </div>
             </div>
-
 
         </div>
     );
