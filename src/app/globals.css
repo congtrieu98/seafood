@@ -103,3 +103,17 @@
   overflow: hidden;
   -webkit-line-clamp: 4;
 }
+
+.seafood_truncate-5 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 5;
+}
+
+.seafood_truncate-6 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 6;
+}

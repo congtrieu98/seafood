@@ -27,7 +27,7 @@ function BreadCrumb() {
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <BreadcrumbLink>
-                            <Link href="/products/all">Products</Link>
+                            <Link href="/product/all">Product</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />

@@ -5,7 +5,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { AlignRight, Gift, Minus, Plus } from "lucide-react";
+import { AlignRight, Gift, Map, MapPin, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import {
@@ -13,10 +13,12 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+
 import Link from "next/link";
 import Tabs from "@/components/frontend/components/tabs/tabs";
 
@@ -34,10 +36,17 @@ export default function ProductDetail() {
         setQty(newQty)
 
     }
+
+    const tags = [
+        '220 Đường số 3, Bình Hưng Hoà B, Bình Tân, TP.HCM',
+        'F5/3E tổ 16, Ấp 6C, xã Vĩnh Lộc A, Bình Chánh, TP.HCM'
+    ].map(
+        (item) => item
+    )
     return (
         <div className="max-w-screen-xl mx-auto md:px-0 px-4">
-            <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:mt-10 pt-4">
-                <div className="col-span-3">
+            <div className="grid md:grid-cols-5 grid-cols-1 md:gap-4 gap-0 md:mt-10 pt-4">
+                <div className="lg:col-span-4 col-span-3 md:pl-4 pl-0">
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                         <div className="sm:mt-0 mt-32">
                             <Carousel showArrows={true}>
@@ -60,7 +69,7 @@ export default function ProductDetail() {
                             </Carousel>
                         </div>
 
-                        <div className="">
+                        <div className="md:px-0 px-4">
                             {/* title */}
                             <div className="text-xl font-medium mb-10">Ghe Xanh Laoi 1 - Song</div>
                             {/* Content */}
@@ -167,11 +176,9 @@ export default function ProductDetail() {
                                                             </SelectTrigger>
                                                             <SelectContent >
                                                                 <SelectGroup>
-                                                                    <SelectItem value="apple">Apple</SelectItem>
-                                                                    <SelectItem value="banana">Banana</SelectItem>
-                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                                    <SelectItem value="grapes">Grapes</SelectItem>
-                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                    <SelectItem value="apple">{"1 món (< 500gram)"}</SelectItem>
+                                                                    <SelectItem value="banana">{"2 món (< 1kg)"}</SelectItem>
+                                                                    <SelectItem value="blueberry">{"3 món (< 1.5kg)"}</SelectItem>
                                                                 </SelectGroup>
                                                             </SelectContent>
                                                         </Select>
@@ -199,11 +206,9 @@ export default function ProductDetail() {
                                                             </SelectTrigger>
                                                             <SelectContent >
                                                                 <SelectGroup>
-                                                                    <SelectItem value="apple">Apple</SelectItem>
-                                                                    <SelectItem value="banana">Banana</SelectItem>
-                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                                    <SelectItem value="grapes">Grapes</SelectItem>
-                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                    <SelectItem value="apple">{"1 món (< 500gram)"}</SelectItem>
+                                                                    <SelectItem value="banana">{"2 món (< 1kg)"}</SelectItem>
+                                                                    <SelectItem value="blueberry">{"3 món (< 1.5kg)"}</SelectItem>
                                                                 </SelectGroup>
                                                             </SelectContent>
                                                         </Select>
@@ -233,11 +238,9 @@ export default function ProductDetail() {
                                                             </SelectTrigger>
                                                             <SelectContent >
                                                                 <SelectGroup>
-                                                                    <SelectItem value="apple">Apple</SelectItem>
-                                                                    <SelectItem value="banana">Banana</SelectItem>
-                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                                    <SelectItem value="grapes">Grapes</SelectItem>
-                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                    <SelectItem value="apple">{"1 món (< 500gram)"}</SelectItem>
+                                                                    <SelectItem value="banana">{"2 món (< 1kg)"}</SelectItem>
+                                                                    <SelectItem value="blueberry">{"3 món (< 1.5kg)"}</SelectItem>
                                                                 </SelectGroup>
                                                             </SelectContent>
                                                         </Select>
@@ -265,11 +268,9 @@ export default function ProductDetail() {
                                                             </SelectTrigger>
                                                             <SelectContent >
                                                                 <SelectGroup>
-                                                                    <SelectItem value="apple">Apple</SelectItem>
-                                                                    <SelectItem value="banana">Banana</SelectItem>
-                                                                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                                    <SelectItem value="grapes">Grapes</SelectItem>
-                                                                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                                                                    <SelectItem value="apple">{"1 món (< 500gram)"}</SelectItem>
+                                                                    <SelectItem value="banana">{"2 món (< 1kg)"}</SelectItem>
+                                                                    <SelectItem value="blueberry">{"3 món (< 1.5kg)"}</SelectItem>
                                                                 </SelectGroup>
                                                             </SelectContent>
                                                         </Select>
@@ -284,8 +285,8 @@ export default function ProductDetail() {
 
 
                             <div className="py-4 items-center text-end">
-                                <div className=""><span className=" font-semibold">Tổng tiền:</span> <span className="font-bold text-blue-500">10.0000</span></div>
-                                <button className="py-2 px-4 bg-blue-500 text-white rounded-md uppercase font-semibold">Thanh toán</button>
+                                <div className="mb-3"><span className=" font-semibold">Tổng tiền:</span> <span className="font-bold text-blue-500">10.000.000đ</span></div>
+                                <button className="py-2 px-4 bg-blue-500 text-white rounded-md uppercase font-semibold hover:shadow-lg">Thêm vào giỏ hàng</button>
                             </div>
 
                         </div>
@@ -295,15 +296,49 @@ export default function ProductDetail() {
                     {/* tabs component */}
                     <div className="border border-t border-t-blue-500"></div>
                     <Tabs />
+
+                    {/* ======= Address ========  */}
+                    <div className="mb-4 text-xl font-medium leading-none">Địa điểm đặt hàng</div>
+                    <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 pb-10">
+                        <div className="col-span-1">
+                            <ScrollArea className="h-72 rounded-md border">
+                                <div className="p-4">
+
+                                    {tags.map((tag) => (
+                                        <>
+                                            <div key={tag} className="flex shadow-lg cursor-pointer p-2">
+                                                <div className="flex items-center mr-2">
+                                                    <MapPin size={18} />
+                                                </div>
+                                                {tag}
+                                            </div>
+                                            <Separator className="my-2" />
+                                        </>
+                                    ))}
+                                </div>
+                            </ScrollArea>
+                        </div>
+                        <div className="col-span-2">
+                            <div className="w-full h-full">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3295.4653630735907!2d106.59320993052715!3d10.81201111612639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b99df9f5ae3%3A0x7accbea9ce724720!2zMjIwIMSQxrDhu51uZyBz4buRIDMsIELDrG5oIEjGsG5nIEhvw6AgQiwgQsOsbmggVMOibiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oIDcwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1713619924510!5m2!1svi!2s"
+                                    className="border-none w-full h-[450px] rounded-[20px]"
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div className="col-span-1">
+                <div className="lg:col-span-1 col-span-2 pb-10 pr-3">
                     <div className="mb-1 bg-slate-100">
                         <div className="uppercase text-sm p-2 border-b border-b-slate-500 ">
-                            Tu vấn đặt hàng
+                            Tư vấn đặt hàng
                         </div>
                         <div className="flex px-5 py-3">
-                            <div className="mr-2">
+                            <div className="mr-2 flex items-center">
                                 <img src="https://theme.hstatic.net/1000182631/1000966139/14/hotline-icon.png?v=1110" alt="" />
                             </div>
                             <div className="">
@@ -313,39 +348,39 @@ export default function ProductDetail() {
                         </div>
                     </div>
                     <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
-                        <div className="mr-2">
+                        <div className="mr-2 flex items-center">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_1.png?v=1110" alt="" />
                         </div>
                         <div className="">
-                            <div className="font-medium uppercase">CAM KẾT CHẤT LƯỢNG</div>
-                            <div className="text-gray-400 text-sx">An toàn xuất xứ</div>
+                            <div className="font-medium uppercase text-sm">CAM KẾT CHẤT LƯỢNG</div>
+                            <div className="text-gray-400 text-xs">An toàn xuất xứ</div>
                         </div>
                     </Link>
                     <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
-                        <div className="mr-2">
+                        <div className="mr-2 flex items-center">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_2.png?v=1110" alt="" />
                         </div>
                         <div className="">
-                            <div className="font-medium uppercase">1 đổi 1 trong 2h</div>
-                            <div className="text-gray-400 text-sx">Nhanh chóng, tận nhà</div>
+                            <div className="font-medium uppercase text-sm">1 đổi 1 trong 2h</div>
+                            <div className="text-gray-400 text-xs">Nhanh chóng, tận nhà</div>
                         </div>
                     </Link>
                     <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100">
-                        <div className="mr-2">
+                        <div className="mr-2 flex items-center">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_3.png?v=1110" alt="" />
                         </div>
                         <div className="">
-                            <div className="font-medium uppercase">Chuẩn đóng gói</div>
-                            <div className="text-gray-400 text-sx">Sạch sẽ, tiện lợi</div>
+                            <div className="font-medium uppercase text-sm">Chuẩn đóng gói</div>
+                            <div className="text-gray-400 text-xs">Sạch sẽ, tiện lợi</div>
                         </div>
                     </Link>
                     <Link href={"/page/chinh-sach-bao-hanh-va-doi-tra"} className="flex px-5 py-3 bg-slate-100 mb-1">
-                        <div className="mr-2">
+                        <div className="mr-2 flex items-center">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_4.png?v=1110" alt="" />
                         </div>
                         <div className="">
-                            <div className="font-medium uppercase">Giao hàng nhanh</div>
-                            <div className="text-gray-400 text-sx">Free ship</div>
+                            <div className="font-medium uppercase text-sm">Giao hàng nhanh</div>
+                            <div className="text-gray-400 text-xs">Free ship</div>
                         </div>
                     </Link>
 
@@ -354,7 +389,7 @@ export default function ProductDetail() {
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/nhqa-icon.png?v=1110" alt="" />
                         </div>
                         <div className="">
-                            <div className="pt-2">
+                            <div className="pt-2 flex flex-wrap">
                                 Liên hệ qua số: <span className="font-bold text-orange-400">090 996 3514</span>
                             </div>
                         </div>

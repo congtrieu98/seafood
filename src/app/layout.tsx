@@ -21,13 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Header */}
-        <Header />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>{
-          children
-        }</ThemeProvider>
-        {/* Footer */}
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Header />
+          {
+            children
+          }
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

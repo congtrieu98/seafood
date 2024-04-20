@@ -33,39 +33,24 @@ function Footer() {
                 <div className="max-w-screen-xl mx-auto">
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-4 py-10">
 
-
                         <div className="space-y-3 ">
                             <div className="text-xl uppercase font-medium ">công ty TNHH Thương mại quốc tế hải sản miền nam</div>
                             <div className="flex space-x-2 mt-5 ">
-                                <MapPin />
+                                <div className="flex items-center">
+                                    <MapPin size={18} />
+                                </div>
                                 <div className="">
-                                    <span className="font-medium">TP.HCM - Quận 1: </span>
-                                    180 Trần Hưng Đạo P.Nguyễn Cư Trinh
+                                    <span className="font-medium">TP.HCM - Quận Bình Tân: </span>
+                                    220 Đường số 3, Bình Hưng Hoà B
                                 </div>
                             </div>
                             <div className="flex space-x-2">
-                                <MapPin />
-                                <div className="">
-                                    <span className="font-medium">TP.HCM - Quận 1: </span>
-                                    180 Trần Hưng Đạo P.Nguyễn Cư Trinh
+                                <div className="flex items-center">
+                                    <MapPin size={18} />
                                 </div>
-                            </div> <div className="flex space-x-2">
-                                <MapPin />
                                 <div className="">
-                                    <span className="font-medium">TP.HCM - Quận 1: </span>
-                                    180 Trần Hưng Đạo P.Nguyễn Cư Trinh
-                                </div>
-                            </div> <div className="flex space-x-2">
-                                <MapPin />
-                                <div className="">
-                                    <span className="font-medium">TP.HCM - Quận 1: </span>
-                                    180 Trần Hưng Đạo P.Nguyễn Cư Trinh
-                                </div>
-                            </div> <div className="flex space-x-2">
-                                <MapPin />
-                                <div className="">
-                                    <span className="font-medium">TP.HCM - Quận 1: </span>
-                                    180 Trần Hưng Đạo P.Nguyễn Cư Trinh
+                                    <span className="font-medium">TP.HCM - Huyện Bình Chánh: </span>
+                                    F5/3E tổ 16, Ấp 6C, xã Vĩnh Lộc A
                                 </div>
                             </div>
                         </div>
@@ -99,7 +84,7 @@ function Footer() {
                                         Khuyến mãi
                                     </div>
                                 </Link>
-                                <Link href={"/"} className="flex cursor-pointer items-center ml-10">
+                                <Link href={"/blog/goc-am-thuc"} className="flex cursor-pointer items-center ml-10">
                                     <Dot className="hover:text-white" size={40} />
                                     <div className="relative after:absolute 
             after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 

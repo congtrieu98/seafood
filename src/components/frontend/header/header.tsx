@@ -162,7 +162,7 @@ const Header = () => {
                     <div className="">
                         {
                             pathName !== '/' ?
-                                <HoverCard>
+                                <HoverCard openDelay={200}>
                                     <HoverCardTrigger>
                                         <div className="p-4 flex items-center bg-[#f0ea1f]">
                                             <Menu />
