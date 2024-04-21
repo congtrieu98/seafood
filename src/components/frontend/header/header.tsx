@@ -32,7 +32,6 @@ const Header = () => {
                 if (element) {
                     element.style.top = '0';
                 }
-                setOpen(false)
             } else {
                 if (element) {
                     element.style.top = '80px';
@@ -43,17 +42,45 @@ const Header = () => {
 
 
     return (
-        <div className="">
+        <div className="relative">
             {/* Sidebar responsive */}
             <div id="sidebarResponsive" className={`absolute top-0 ${open ? "left-0" : "left-[-300px]"} duration-1000
-                p-2 w-[245px] overflow-y-auto text-center bg-gray-100 shadow z-50 min-h-screen`}>
+                p-2 w-[300px] overflow-y-auto text-center bg-gray-100 shadow z-50 min-h-screen`}>
                 <div className="text-gray-900 text-xl" >
                     <div>
-                        <div className="py-2.5 items-end border-b-2">
-                            <div className="flex flex-col items-end text-gray-900 cursor-pointer" onClick={() => setOpen(false)}>
-                                <MoveLeft />
+                        <div className="flex justify-between py-3 border-b-2">
+                            <Link className="flex items-center justify-center" href="/">
+                                <img
+                                    src={'/assets/logo.png'}
+                                    height={50}
+                                    width={50}
+                                    alt="logo"
+                                    className="rounded-full"
+                                />
+                            </Link>
+                            <div className="py-2.5 items-end">
+                                <div className="flex flex-col items-end text-gray-900 cursor-pointer" onClick={() => setOpen(false)}>
+                                    <MoveLeft />
+                                </div>
                             </div>
                         </div>
+
+
+                        <div className="my-2 bg-slate-300 p-2 rounded-md">
+                            <div className="uppercase text-sm p-2 border-b border-b-slate-500 ">
+                                Tư vấn đặt hàng
+                            </div>
+                            <div className="flex px-5 py-3">
+                                <div className="mr-2 flex items-center">
+                                    <img src="https://theme.hstatic.net/1000182631/1000966139/14/hotline-icon.png?v=1110" alt="" />
+                                </div>
+                                <div className="items-start">
+                                    <div className="flex items-start font-bold text-orange-400 text-sm">0937.033.747</div>
+                                    <div className="flex items-start text-start text-sm">8h-21h (từ T2 - Chủ Nhật)</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="bcn" />
                             <div className="text-[15px] ml-4 text-gray-900">Bán chạy nhất</div>
@@ -72,9 +99,21 @@ const Header = () => {
                             <div className="text-[15px] ml-4 text-gray-900">Bạch tuột</div>
                         </div>
 
-                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gray-300">
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2  hover:bg-gray-300">
                             <img src="https://theme.hstatic.net/1000182631/1000966139/14/icon_megamenu1.png?v=1086" alt="spnk" />
                             <div className="text-[15px] ml-4 text-gray-900">Sò, ngêu</div>
+                        </div>
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2  hover:bg-gray-300">
+                            <div className="text-[15px] ml-4 text-gray-900">Chăm sóc khách hàng</div>
+                        </div>
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2  hover:bg-gray-300">
+                            <div className="text-[15px] ml-4 text-gray-900">Khuyến mãi</div>
+                        </div>
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2  hover:bg-gray-300">
+                            <div className="text-[15px] ml-4 text-gray-900">Góc ẩm thực</div>
+                        </div>
+                        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-gray-300">
+                            <div className="text-[15px] ml-4 text-gray-900">Menu chế biến</div>
                         </div>
 
                     </div>
@@ -93,7 +132,7 @@ const Header = () => {
                         />
                     </Link>
                     <div className="md:flex justify-center items-center hidden">
-                        Mua hàng online liên hệ ngay hotline: 090.998.3514
+                        Mua hàng online liên hệ ngay hotline: 0937.033.747
                     </div>
                     <div className="flex justify-end items-end">
                         <MenuDropdownHeader />

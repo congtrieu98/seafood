@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 function CulinaryCorner() {
     return (
         <div className="max-w-screen-xl mx-auto md:px-0 px-4">
-            <div className="grid grid-cols-3 gap-4 py-5">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 py-5 sm:mt-5 mt-40">
                 <div className="col-span-1">
                     <div className="p-2 border rounded-md mb-5">
                         <div className="p-2 text-center items-center uppercase">
@@ -81,8 +81,8 @@ function CulinaryCorner() {
                     <div className="duration-1000
                         p-2  overflow-y-auto text-center shadow">
                         <div className="text-gray-900 text-xl">
-                            <div className="p-2.5 mt-2 flex items-center rounded-md px-4 border-b-2">
-                                <div className="text-xl ml-4 text-gray-900">Danh mục blog</div>
+                            <div className="p-2.5 mt-2 rounded-md px-4 border-b-2">
+                                <div className="text-xl  text-gray-900 items-center text-center uppercase">Danh mục blog</div>
                             </div>
                             <Link href={"/page/about-us"} className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer border-b-2 hover:bg-gray-300">
                                 <div className="text-[15px] ml-4 text-gray-900">Giới thiệu</div>
@@ -103,18 +103,19 @@ function CulinaryCorner() {
                     </div>
                 </div>
 
-                <div className="col-span-2 ">
+                <div className="col-span-2 md:pr-0 pr-4">
                     <div className="space-y-5">
-                        <div className="uppercase font-bold text-xl relative after:absolute 
+                        <div className="flex md:justify-start justify-center md:my-0 mt-5 uppercase font-bold text-xl relative after:absolute 
                         after:bottom-0 after:left-0 after:bg-blue-500 after:h-1 after:w-0 
-                        hover:after:w-full after:transition-all after:ease-in-out after:duration-300"
+                        md:hover:after:w-[145px] after:transition-all after:ease-in-out after:duration-300"
                         >
                             góc ẩm thực
                         </div>
+                        <div className="md:hidden items-center h-0.5 bg-blue-500"></div>
 
 
 
-                        <div className="grid grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                             <Link href={"/blog/slug-my-blog"} className="overflow-hidden">
                                 <img
                                     src="https://file.hstatic.net/1000182631/article/kham-pha-am-thuc-ireland_833708ee03ff4202b8eb73c059594e13_large.jpg"
@@ -143,7 +144,7 @@ function CulinaryCorner() {
                         </div>
 
 
-                        <div className="grid grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                             <Link href={"/blog/slug-my-blog"} className="overflow-hidden">
                                 <img
                                     src="https://file.hstatic.net/1000182631/article/kham-pha-am-thuc-ireland_833708ee03ff4202b8eb73c059594e13_large.jpg"
@@ -172,7 +173,7 @@ function CulinaryCorner() {
                         </div>
 
 
-                        <div className="grid grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                             <Link href={"/blog/slug-my-blog"} className="overflow-hidden">
                                 <img
                                     src="https://file.hstatic.net/1000182631/article/kham-pha-am-thuc-ireland_833708ee03ff4202b8eb73c059594e13_large.jpg"
@@ -201,7 +202,7 @@ function CulinaryCorner() {
                         </div>
 
 
-                        <div className="grid grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                             <Link href={"/blog/slug-my-blog"} className="overflow-hidden">
                                 <img
                                     src="https://file.hstatic.net/1000182631/article/kham-pha-am-thuc-ireland_833708ee03ff4202b8eb73c059594e13_large.jpg"

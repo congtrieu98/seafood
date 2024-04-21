@@ -9,10 +9,10 @@ export default async function BlogLayout({
     return (
         <main>
             <div className="min-h-screen">
-                <div className="bg-gray-200">
-                    <BreadCrumb />
-                </div>
                 <main className="">
+                    <div className="bg-gray-200">
+                        <BreadCrumb />
+                    </div>
                     {children}
                 </main>
                 <CarouselPostGeneral />

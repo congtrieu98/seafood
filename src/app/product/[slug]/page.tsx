@@ -342,7 +342,7 @@ export default function ProductDetail() {
                                 <img src="https://theme.hstatic.net/1000182631/1000966139/14/hotline-icon.png?v=1110" alt="" />
                             </div>
                             <div className="">
-                                <div className="font-bold text-orange-400">090 996 3514</div>
+                                <div className="font-bold text-orange-400">0937.033.747</div>
                                 <div className="">8h-21h (từ T2 - Chủ Nhật)</div>
                             </div>
                         </div>
@@ -390,7 +390,7 @@ export default function ProductDetail() {
                         </div>
                         <div className="">
                             <div className="pt-2 flex flex-wrap">
-                                Liên hệ qua số: <span className="font-bold text-orange-400">090 996 3514</span>
+                                Liên hệ qua số: <span className="font-bold text-orange-400">0937.033.747</span>
                             </div>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ function ReturnPlicy() {
                 <div>
                     Là Đại sứ mang đến những bữa ăn CHẤT LƯỢNG và HẠNH PHÚC, Hải Sản Hoàng Gia hiểu được sự kỳ vọng của Quý Khách Hàng khi lựa chọn sản phẩm, dịch vụ của Hải Sản Hoàng Gia. Chúng tôi mong muốn số tiền Quý Khách Hàng bỏ ra sẽ nhận được những sản phẩm và dịch vụ thật sự xứng đáng. Chính vì những lý do đó chúng tôi sẵn sàng lấy hết mọi rủi ro của Quý Khách Hàng khi mua hải sản, tiếp nhận mọi khiếu nại của Quý Khách Hàng liên quan đến việc sử dụng sản phẩm và dịch vụ của chúng tôi qua:
 
-                    Hotline: 090 6789 543
+                    Hotline: 0937.033.747
 
                     Fanpage: https://www.facebook.com/haisanhoanggia
 
