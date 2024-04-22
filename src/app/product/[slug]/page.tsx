@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 'use client'
+
+import { useContext } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -21,10 +23,14 @@ import { Separator } from "@/components/ui/separator";
 
 import Link from "next/link";
 import Tabs from "@/components/frontend/components/tabs/tabs";
+import CartContext from "@/lib/context/cartContext"
 
 
 export default function ProductDetail() {
     const [qty, setQty] = useState(0)
+
+    //@ts-ignore
+    const { addItemToCart, cart } = useContext(CartContext)
 
     const handleUnIncrement = () => {
         const newQty = qty - 1
@@ -43,6 +49,19 @@ export default function ProductDetail() {
     ].map(
         (item) => item
     )
+
+    const addToCartHandler = () => {
+        addItemToCart({
+            id: 'iyuewtfkjebfkjdhfosdjhvdjsnfg',
+            name: 'Ghẹ sống loại 1',
+            price: 450000,
+            stock: 5,
+            image: 'https://product.hstatic.net/1000182631/product/img_3089_62f216fb3eef451ba4d96038b71a7d70_master.jpg',
+            saller: true,
+            quantity: qty
+
+        })
+    }
     return (
         <div className="max-w-screen-xl mx-auto md:px-0 px-4">
             <div className="grid md:grid-cols-5 grid-cols-1 md:gap-4 gap-0 md:mt-10 pt-4">
@@ -135,7 +154,7 @@ export default function ProductDetail() {
                                 </div>
                             </div>
                             <div className="flex justify-center gap-4 mt-4">
-                                <button className="px-4 py-2 text-xl text-white bg-blue-500 uppercase rounded-md">Thêm vào giỏ</button>
+                                <button className="px-4 py-2 text-xl text-white bg-blue-500 uppercase rounded-md" onClick={addToCartHandler}>Thêm vào giỏ</button>
                                 <button className="px-4 py-2 text-xl text-white bg-red-700 uppercase rounded-md">Mua ngay</button>
                             </div>
 
@@ -286,7 +305,10 @@ export default function ProductDetail() {
 
                             <div className="py-4 items-center text-end">
                                 <div className="mb-3"><span className=" font-semibold">Tổng tiền:</span> <span className="font-bold text-blue-500">10.000.000đ</span></div>
-                                <button className="py-2 px-4 bg-blue-500 text-white rounded-md uppercase font-semibold hover:shadow-lg">Thêm vào giỏ hàng</button>
+                                <button
+                                    className="py-2 px-4 bg-blue-500 text-white rounded-md uppercase font-semibold hover:shadow-lg"
+                                    onClick={addToCartHandler}
+                                >Thêm vào giỏ hàng</button>
                             </div>
 
                         </div>
@@ -304,9 +326,9 @@ export default function ProductDetail() {
                             <ScrollArea className="h-72 rounded-md border">
                                 <div className="p-4">
 
-                                    {tags.map((tag) => (
+                                    {tags.map((tag, index) => (
                                         <>
-                                            <div key={tag} className="flex shadow-lg cursor-pointer p-2">
+                                            <div key={index} className="flex shadow-lg cursor-pointer p-2">
                                                 <div className="flex items-center mr-2">
                                                     <MapPin size={18} />
                                                 </div>

@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/frontend/header/header";
 import Footer from "@/components/frontend/footer/footer";
+import { CartGlobalProvider } from "@/lib/hooks/cartGlobalProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
-          {
-            children
-          }
-          <Footer />
-        </ThemeProvider>
+        <CartGlobalProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <Header />
+            {
+              children
+            }
+            <Footer />
+          </ThemeProvider>
+        </CartGlobalProvider>
       </body>
     </html>
   );

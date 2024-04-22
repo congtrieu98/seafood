@@ -15,6 +15,7 @@ import Link from "next/link";
 
 export default function HomePage() {
 
+
   return (
     <div className="min-h-screen relative">
 
@@ -70,8 +71,11 @@ export default function HomePage() {
                 <div className="bg-orange-500 rounded-md text-xs p-1 items-center">-45%</div>
               </div>
 
-              <div className="flex justify-center items-center text-center pb-5">
-                <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300 cursor-pointer">Chọn mua</div>
+              <div
+                role="button"
+                className="flex justify-center items-center text-center pb-5"
+              >
+                <div className="text-center bg-blue-500 text-white py-1.5 px-4 rounded-md transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300">Chọn mua</div>
               </div>
             </div>
 

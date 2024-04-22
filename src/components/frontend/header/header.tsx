@@ -7,7 +7,8 @@ import { Menu, MoveLeft, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import CartContext from "@/lib/context/cartContext"
 
 import {
     HoverCard,
@@ -17,12 +18,14 @@ import {
 
 const Header = () => {
     const pathName = usePathname()
-    console.log("pathName:", pathName)
     const [open, setOpen] = useState(false)
 
     const handleClickSidebar = () => {
         setOpen(true)
     }
+
+    //@ts-ignore
+    const { addItemToCart, cart } = useContext(CartContext)
 
     if (typeof window !== 'undefined') {
         window.addEventListener('scroll', function () {
@@ -178,19 +181,19 @@ const Header = () => {
                     <SearchForm />
 
                     {/* Cart */}
-                    <div className="md:hidden absolute md:top-0 -top-3 md:right-0 right-5 flex justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
+                    <Link href={"/cart"} className="md:hidden absolute md:top-0 -top-3 md:right-0 right-5 flex justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
                         <div className="cart-icon relative">
                             <ShoppingCart size={30} />
-                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f] ">0</div>
+                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f] ">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
                         </div>
-                    </div>
+                    </Link>
 
-                    <div className="md:flex hidden justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
+                    <Link href={"/cart"} className="md:flex hidden justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
                         <div className="cart-icon relative">
                             <ShoppingCart size={30} />
-                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">0</div>
+                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
 
