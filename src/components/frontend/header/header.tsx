@@ -3,7 +3,7 @@
 
 import MenuDropdownHeader from "@/components/frontend/components/menu/menu-dopdowwn";
 import SearchForm from "@/components/frontend/components/search/searchForm";
-import { Menu, MoveLeft, ShoppingCart } from "lucide-react";
+import { Menu, MoveLeft, ShoppingCart, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -180,7 +180,7 @@ const Header = () => {
                     {/* Search form */}
                     <SearchForm />
 
-                    {/* Cart */}
+                    {/* Cart MB */}
                     <Link href={"/cart"} className="md:hidden absolute md:top-0 -top-3 md:right-0 right-5 flex justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
                         <div className="cart-icon relative">
                             <ShoppingCart size={30} />
@@ -188,12 +188,59 @@ const Header = () => {
                         </div>
                     </Link>
 
-                    <Link href={"/cart"} className="md:flex hidden justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
-                        <div className="cart-icon relative">
-                            <ShoppingCart size={30} />
-                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
-                        </div>
-                    </Link>
+                    {/* Cart PC */}
+                    <HoverCard openDelay={200} >
+                        <HoverCardTrigger>
+                            <Link href={"/cart"} className="md:flex hidden justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
+                                <div className="cart-icon relative">
+                                    <ShoppingCart size={30} />
+                                    <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
+                                </div>
+                            </Link>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="px-0">
+                            <div className="p-2">
+                                {
+                                    cart?.cartItems?.map((cartItem: any) => {
+                                        return (
+                                            <div key={cartItem.id}>
+                                                <div className="grid grid-cols-3 gap-2">
+                                                    <div className="col-span-1">
+                                                        <div className="block w-16 h-16 rounded border border-gray-200 overflow-hidden">
+                                                            <img src={cartItem?.image} alt={cartItem?.name} />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-span-2">
+                                                        <div className="flex justify-between">
+                                                            <div className="text-sm">{cartItem?.name}</div>
+                                                            <div className="text-sm font-bold">{cartItem?.quantity}</div>
+                                                            <div className="text-sm">
+                                                                <Trash size={16} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="mt-3">{cartItem?.price}đ</div>
+                                                    </div>
+
+                                                </div>
+                                                <div className="my-3 flex justify-between">
+                                                    <div className="font-bold">
+                                                        Tổng tiền:
+                                                    </div>
+                                                    <div className="font-bold text-blue-500">
+                                                        {cartItem?.price}đ
+                                                    </div>
+
+                                                </div>
+                                                <Link href={"/cart"}>
+                                                    <div className="bg-blue-500 font-bold text-white py-2 px-4 text-center rounded-md ">Xem giỏ hàng</div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </HoverCardContent>
+                    </HoverCard>
                 </div>
             </div>
 
