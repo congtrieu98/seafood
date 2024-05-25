@@ -7,49 +7,52 @@ import { toast } from "sonner";
 import { useValidatedForm } from "@/lib/hooks/useValidatedForm";
 
 import { type Action, cn } from "@/lib/utils";
-import { type TAddOptimistic } from "@/app/(app)/pages/useOptimisticPages";
+import { type TAddOptimistic } from "@/app/(app)/cat-products/useOptimisticCatProducts";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useBackPath } from "@/components/shared/BackButton";
 
-import { Checkbox } from "@/components/ui/checkbox";
 
-import { type Page, insertPageParams } from "@/lib/db/schema/pages";
+
+import { type CatProduct, insertCatProductParams } from "@/lib/db/schema/catProducts";
 import {
-  createPageAction,
-  deletePageAction,
-  updatePageAction,
-} from "@/lib/actions/pages";
+  createCatProductAction,
+  deleteCatProductAction,
+  updateCatProductAction,
+} from "@/lib/actions/catProducts";
 
-const PageForm = ({
-  page,
+
+const CatProductForm = ({
+  
+  catProduct,
   openModal,
   closeModal,
   addOptimistic,
   postSuccess,
 }: {
-  page?: Page | null;
-
-  openModal?: (page?: Page) => void;
+  catProduct?: CatProduct | null;
+  
+  openModal?: (catProduct?: CatProduct) => void;
   closeModal?: () => void;
   addOptimistic?: TAddOptimistic;
   postSuccess?: () => void;
 }) => {
   const { errors, hasErrors, setErrors, handleChange } =
-    useValidatedForm<Page>(insertPageParams);
-  const editing = !!page?.id;
-
+    useValidatedForm<CatProduct>(insertCatProductParams);
+  const editing = !!catProduct?.id;
+  
   const [isDeleting, setIsDeleting] = useState(false);
   const [pending, startMutation] = useTransition();
 
   const router = useRouter();
-  const backpath = useBackPath("pages");
+  const backpath = useBackPath("cat-products");
+
 
   const onSuccess = (
     action: Action,
-    data?: { error: string; values: Page }
+    data?: { error: string; values: CatProduct },
   ) => {
     const failed = Boolean(data?.error);
     if (failed) {
@@ -60,51 +63,48 @@ const PageForm = ({
     } else {
       router.refresh();
       postSuccess && postSuccess();
-      toast.success(`Page ${action}d!`);
+      toast.success(`CatProduct ${action}d!`);
       if (action === "delete") router.push(backpath);
     }
   };
 
   const handleSubmit = async (data: FormData) => {
     setErrors(null);
+
     const payload = Object.fromEntries(data.entries());
-    const pageParsed = await insertPageParams.safeParseAsync({ ...payload });
-    if (!pageParsed.success) {
-      setErrors(pageParsed?.error.flatten().fieldErrors);
+    const catProductParsed = await insertCatProductParams.safeParseAsync({  ...payload });
+    if (!catProductParsed.success) {
+      setErrors(catProductParsed?.error.flatten().fieldErrors);
       return;
     }
 
     closeModal && closeModal();
-    const values = pageParsed.data;
-    const pendingPage: Page = {
-      updatedAt: page?.updatedAt ?? new Date(),
-      createdAt: page?.createdAt ?? new Date(),
-      id: page?.id ?? "",
-      userId: page?.userId ?? "",
+    const values = catProductParsed.data;
+    const pendingCatProduct: CatProduct = {
+      updatedAt: catProduct?.updatedAt ?? new Date(),
+      createdAt: catProduct?.createdAt ?? new Date(),
+      id: catProduct?.id ?? "",
+      userId: catProduct?.userId ?? "",
       ...values,
     };
     try {
       startMutation(async () => {
-        addOptimistic &&
-          addOptimistic({
-            data: pendingPage,
-            action: editing ? "update" : "create",
-          });
+        addOptimistic && addOptimistic({
+          data: pendingCatProduct,
+          action: editing ? "update" : "create",
+        });
 
         const error = editing
-          ? await updatePageAction({
-            ...values,
-            id: page.id,
-          })
-          : await createPageAction(values);
+          ? await updateCatProductAction({ ...values, id: catProduct.id })
+          : await createCatProductAction(values);
 
         const errorFormatted = {
           error: error ?? "Error",
-          values: pendingPage,
+          values: pendingCatProduct 
         };
         onSuccess(
           editing ? "update" : "create",
-          error ? errorFormatted : undefined
+          error ? errorFormatted : undefined,
         );
       });
     } catch (e) {
@@ -115,13 +115,13 @@ const PageForm = ({
   };
 
   return (
-    <form action={handleSubmit} onChange={handleChange} className={""}>
+    <form action={handleSubmit} onChange={handleChange} className={"space-y-8"}>
       {/* Schema fields start */}
-      <div>
+              <div>
         <Label
           className={cn(
             "mb-2 inline-block",
-            errors?.name ? "text-destructive" : ""
+            errors?.name ? "text-destructive" : "",
           )}
         >
           Name
@@ -130,7 +130,7 @@ const PageForm = ({
           type="text"
           name="name"
           className={cn(errors?.name ? "ring ring-destructive" : "")}
-          defaultValue={page?.name ?? ""}
+          defaultValue={catProduct?.name ?? ""}
         />
         {errors?.name ? (
           <p className="text-xs text-destructive mt-2">{errors.name[0]}</p>
@@ -138,51 +138,6 @@ const PageForm = ({
           <div className="h-6" />
         )}
       </div>
-      <div>
-        <Label
-          className={cn(
-            "mb-2 inline-block",
-            errors?.description ? "text-destructive" : ""
-          )}
-        >
-          Description
-        </Label>
-        <Input
-          type="text"
-          name="description"
-          className={cn(errors?.description ? "ring ring-destructive" : "")}
-          defaultValue={page?.description ?? ""}
-        />
-        {errors?.description ? (
-          <p className="text-xs text-destructive mt-2">
-            {errors.description[0]}
-          </p>
-        ) : (
-          <div className="h-6" />
-        )}
-      </div>
-      <div>
-        <Label
-          className={cn(
-            "mb-2 inline-block",
-            errors?.slug ? "text-destructive" : ""
-          )}
-        >
-          Slug
-        </Label>
-        <Input
-          type="text"
-          name="slug"
-          className={cn(errors?.slug ? "ring ring-destructive" : "")}
-          defaultValue={page?.slug ?? ""}
-        />
-        {errors?.slug ? (
-          <p className="text-xs text-destructive mt-2">{errors.slug[0]}</p>
-        ) : (
-          <div className="h-6" />
-        )}
-      </div>
-
       {/* Schema fields end */}
 
       {/* Save Button */}
@@ -198,15 +153,15 @@ const PageForm = ({
             setIsDeleting(true);
             closeModal && closeModal();
             startMutation(async () => {
-              addOptimistic && addOptimistic({ action: "delete", data: page });
-              const error = await deletePageAction(page.id);
+              addOptimistic && addOptimistic({ action: "delete", data: catProduct });
+              const error = await deleteCatProductAction(catProduct.id);
               setIsDeleting(false);
-              // const errorFormatted = {
-              //   error: error ?? "Error",
-              //   values: page,
-              // };
+              const errorFormatted = {
+                error: error ?? "Error",
+                values: catProduct,
+              };
 
-              // onSuccess("delete", error ? errorFormatted : undefined);
+              onSuccess("delete", error ? errorFormatted : undefined);
             });
           }}
         >
@@ -217,7 +172,7 @@ const PageForm = ({
   );
 };
 
-export default PageForm;
+export default CatProductForm;
 
 const SaveButton = ({
   editing,

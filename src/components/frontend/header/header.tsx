@@ -15,10 +15,15 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { cn } from "@/lib/utils";
+import { additionalLinks, defaultLinks } from "@/config/nav";
 
 const Header = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState(false)
+
+    const checkAdditionalLinks = additionalLinks[0].links.some(item => pathName.startsWith(item.href))
+    const checkDefaultLinks = defaultLinks.some(item => pathName.startsWith(item.href))
 
     const handleClickSidebar = () => {
         setOpen(true)
@@ -45,7 +50,9 @@ const Header = () => {
 
 
     return (
-        <div className="relative">
+        <div className={cn("relative",
+            { "hidden": checkAdditionalLinks || checkDefaultLinks }
+        )}>
             {/* Sidebar responsive */}
             <div id="sidebarResponsive" className={`absolute top-0 ${open ? "left-0" : "left-[-300px]"} duration-1000
                 p-2 w-[300px] overflow-y-auto text-center bg-gray-100 shadow z-50 min-h-screen`}>

@@ -1,12 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
 import { Dot, MapPin } from "lucide-react";
 import Link from "next/link";
 import CarouselPartner from "../components/carouselMultiple/carouselPartner";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { additionalLinks, defaultLinks } from "@/config/nav";
 
 
 function Footer() {
+    const pathName = usePathname()
+
+    const checkAdditionalLinks = additionalLinks[0].links.some(item => pathName.startsWith(item.href))
+    const checkDefaultLinks = defaultLinks.some(item => pathName.startsWith(item.href))
+
     return (
-        <>
+        <div className={cn(
+            { "hidden": checkAdditionalLinks || checkDefaultLinks }
+        )}>
             {/* Partner */}
             <div className="max-w-screen-xl mx-auto pb-10 px-4">
                 <div className="sm:flex hidden mb-10 items-center justify-between flex-wrap">
@@ -205,7 +216,7 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-        </>
+        </div>
 
 
     );

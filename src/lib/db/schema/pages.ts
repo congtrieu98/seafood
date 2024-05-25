@@ -22,13 +22,7 @@ export const insertPageParams = baseSchema
   });
 
 export const updatePageSchema = baseSchema;
-export const updatePageParams = updatePageSchema
-  .extend({
-    public: z.coerce.boolean(),
-  })
-  .omit({
-    userId: true,
-  });
+export const updatePageParams = updatePageSchema.omit({ userId: true, });
 export const pageIdSchema = baseSchema.pick({ id: true });
 export const pageSlugSchema = baseSchema.pick({ slug: true });
 

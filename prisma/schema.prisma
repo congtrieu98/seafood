@@ -48,15 +48,17 @@ model Session {
 }
 
 model User {
-  id            String     @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?    @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   pages         Page[]
   pageLinks     PageLink[]
+  catProducts   CatProduct[]
+  Product       Product[]
 }
 
 model VerificationToken {
@@ -68,17 +70,15 @@ model VerificationToken {
 }
 
 model Page {
-  id              String     @id @default(cuid())
-  name            String
-  description     String
-  public          Boolean
-  slug            String
-  backgroundColor String
-  userId          String
-  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-  PageLink        PageLink[]
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  slug        String
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  PageLink    PageLink[]
 }
 
 model PageLink {
@@ -91,6 +91,41 @@ model PageLink {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model CatProduct {
+  id        String    @id @default(cuid())
+  name      String
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
+}
+
+model Product {
+  id           String     @id @default(cuid())
+  name         String
+  introduce    String
+  price        Int
+  oldPrice     Int?
+  discount     Int?
+  quantity     Int
+  weight       Int?
+  country      String
+  unit         String
+  property     String
+  size         String
+  status       String
+  note         String?
+  catProductId String
+  catProduct   CatProduct @relation(fields: [catProductId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 
   @@index([userId])
 }
