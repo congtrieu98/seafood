@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
+
 import { type CatProduct, CompleteCatProduct } from "@/lib/db/schema/catProducts";
 import Modal from "@/components/shared/Modal";
 
@@ -12,19 +12,20 @@ import { useOptimisticCatProducts } from "@/app/(app)/cat-products/useOptimistic
 import { Button } from "@/components/ui/button";
 import CatProductForm from "./CatProductForm";
 import { PlusIcon } from "lucide-react";
+import CatPro from "./CatPro";
 
 type TOpenModal = (catProduct?: CatProduct) => void;
 
 export default function CatProductList({
   catProducts,
-   
+
 }: {
   catProducts: CompleteCatProduct[];
-   
+
 }) {
   const { optimisticCatProducts, addOptimisticCatProduct } = useOptimisticCatProducts(
     catProducts,
-     
+
   );
   const [open, setOpen] = useState(false);
   const [activeCatProduct, setActiveCatProduct] = useState<CatProduct | null>(null);
@@ -46,66 +47,67 @@ export default function CatProductList({
           addOptimistic={addOptimisticCatProduct}
           openModal={openModal}
           closeModal={closeModal}
-          
+
         />
       </Modal>
-      <div className="absolute right-0 top-0 ">
+      {/* <div className="absolute right-5 top-0 ">
         <Button onClick={() => openModal()} variant={"outline"}>
           +
         </Button>
-      </div>
+      </div> */}
       {optimisticCatProducts.length === 0 ? (
         <EmptyState openModal={openModal} />
       ) : (
-        <ul>
-          {optimisticCatProducts.map((catProduct) => (
-            <CatProduct
-              catProduct={catProduct}
-              key={catProduct.id}
-              openModal={openModal}
-            />
-          ))}
-        </ul>
+        // <ul>
+        //   {optimisticCatProducts.map((catProduct) => (
+        //     <CatProduct
+        //       catProduct={catProduct}
+        //       key={catProduct.id}
+        //       openModal={openModal}
+        //     />
+        //   ))}
+        // </ul>
+        <CatPro dataCatPro={optimisticCatProducts} />
       )}
     </div>
   );
 }
 
-const CatProduct = ({
-  catProduct,
-  openModal,
-}: {
-  catProduct: CompleteCatProduct;
-  openModal: TOpenModal;
-}) => {
-  const optimistic = catProduct.id === "optimistic";
-  const deleting = catProduct.id === "delete";
-  const mutating = optimistic || deleting;
-  const pathname = usePathname();
-  const basePath = pathname.includes("cat-products")
-    ? pathname
-    : pathname + "/cat-products/";
+// const CatProduct = ({
+//   catProduct,
+//   openModal,
+// }: {
+//   catProduct: CompleteCatProduct;
+//   openModal: TOpenModal;
+// }) => {
+//   const optimistic = catProduct.id === "optimistic";
+//   const deleting = catProduct.id === "delete";
+//   const mutating = optimistic || deleting;
+//   const pathname = usePathname();
+//   const basePath = pathname.includes("cat-products")
+//     ? pathname
+//     : pathname + "/cat-products/";
 
 
-  return (
-    <li
-      className={cn(
-        "flex justify-between my-2",
-        mutating ? "opacity-30 animate-pulse" : "",
-        deleting ? "text-destructive" : "",
-      )}
-    >
-      <div className="w-full">
-        <div>{catProduct.name}</div>
-      </div>
-      <Button variant={"link"} asChild>
-        <Link href={ basePath + "/" + catProduct.id }>
-          Edit
-        </Link>
-      </Button>
-    </li>
-  );
-};
+//   return (
+//     <li
+//       className={cn(
+//         "flex justify-between my-2",
+//         mutating ? "opacity-30 animate-pulse" : "",
+//         deleting ? "text-destructive" : "",
+//       )}
+//     >
+//       <div className="w-full">
+//         <div>{catProduct.name}</div>
+//       </div>
+//       <Button variant={"link"} asChild>
+//         <Link href={basePath + "/" + catProduct.id}>
+//           Edit
+//         </Link>
+//       </Button>
+//     </li>
+//   );
+// };
 
 const EmptyState = ({ openModal }: { openModal: TOpenModal }) => {
   return (

@@ -10,14 +10,7 @@ export const revalidate = 0;
 
 export default async function CatProductsPage() {
   return (
-    <main>
-      <div className="relative">
-        <div className="flex justify-between">
-          <h1 className="font-semibold text-2xl my-2">Cat Products</h1>
-        </div>
-        <CatProducts />
-      </div>
-    </main>
+    <CatProducts />
   );
 }
 
@@ -25,10 +18,10 @@ const CatProducts = async () => {
   await checkAuth();
 
   const { catProducts } = await getCatProducts();
-  
+
   return (
     <Suspense fallback={<Loading />}>
-      <CatProductList catProducts={catProducts}  />
+      <CatProductList catProducts={catProducts} />
     </Suspense>
   );
 };

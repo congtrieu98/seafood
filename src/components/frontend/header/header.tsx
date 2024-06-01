@@ -7,8 +7,8 @@ import { Menu, MoveLeft, ShoppingCart, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
-import CartContext from "@/lib/context/cartContext"
+import { useEffect, useRef, useState } from "react";
+import { useCart } from "@/lib/context/cartContext"
 
 import {
     HoverCard,
@@ -20,17 +20,35 @@ import { additionalLinks, defaultLinks } from "@/config/nav";
 
 const Header = () => {
     const pathName = usePathname()
+    const sidebarRef = useRef<HTMLDivElement>(null);
     const [open, setOpen] = useState(false)
+    const { addItemToCart, cart } = useCart()
 
     const checkAdditionalLinks = additionalLinks[0].links.some(item => pathName.startsWith(item.href))
     const checkDefaultLinks = defaultLinks.some(item => pathName.startsWith(item.href))
 
     const handleClickSidebar = () => {
-        setOpen(true)
+        setOpen(!open)
     }
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+            setOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (open) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [open]);
+
     //@ts-ignore
-    const { addItemToCart, cart } = useContext(CartContext)
 
     if (typeof window !== 'undefined') {
         window.addEventListener('scroll', function () {
@@ -39,6 +57,7 @@ const Header = () => {
             if (scrollTop > 0) {
                 if (element) {
                     element.style.top = '0';
+                    setOpen(false)
                 }
             } else {
                 if (element) {
@@ -54,8 +73,8 @@ const Header = () => {
             { "hidden": checkAdditionalLinks || checkDefaultLinks }
         )}>
             {/* Sidebar responsive */}
-            <div id="sidebarResponsive" className={`absolute top-0 ${open ? "left-0" : "left-[-300px]"} duration-1000
-                p-2 w-[300px] overflow-y-auto text-center bg-gray-100 shadow z-50 min-h-screen`}>
+            <div id="sidebarResponsive" className={`fixed top-0 ${open ? "left-0" : "left-[-300px]"} duration-1000
+                p-2 w-[300px] h-full overflow-y-auto text-center bg-gray-100 shadow z-50`}>
                 <div className="text-gray-900 text-xl" >
                     <div>
                         <div className="flex justify-between py-3 border-b-2">
@@ -147,18 +166,18 @@ const Header = () => {
                     <div className="flex justify-end items-end">
                         <MenuDropdownHeader />
                     </div>
-                    <nav className=" flex gap-4 sm:gap-6">
+                    <nav className=" flex gap-2 sm:gap-6">
                         <Link
                             className="text-sm font-medium hover:underline underline-offset-4"
                             href="/sign-in"
                         >
-                            Sig In
+                            SigIn
                         </Link>
                         <Link
                             className="text-sm font-medium hover:underline underline-offset-4"
                             href="/sign-up"
                         >
-                            Sign Up
+                            SignUp
                         </Link>
                     </nav>
                 </div>
@@ -191,7 +210,7 @@ const Header = () => {
                     <Link href={"/cart"} className="md:hidden absolute md:top-0 -top-3 md:right-0 right-5 flex justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
                         <div className="cart-icon relative">
                             <ShoppingCart size={30} />
-                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f] ">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
+                            <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f] ">{cart?.length ? cart.length : 0}</div>
                         </div>
                     </Link>
 
@@ -201,14 +220,14 @@ const Header = () => {
                             <Link href={"/cart"} className="md:flex hidden justify-center text-sm items-center text-white hover:text-[#f0ea1f] cursor-pointer">
                                 <div className="cart-icon relative">
                                     <ShoppingCart size={30} />
-                                    <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">{cart?.cartItems?.length ? cart?.cartItems.length : 0}</div>
+                                    <div className="bg-red-500 text-white px-2 py-1 rounded-full absolute -top-4 -right-4 hover:text-[#f0ea1f]">{cart?.length ? cart.length : 0}</div>
                                 </div>
                             </Link>
                         </HoverCardTrigger>
                         <HoverCardContent className="px-0">
                             <div className="p-2">
                                 {
-                                    cart?.cartItems?.map((cartItem: any) => {
+                                    cart?.map((cartItem) => {
                                         return (
                                             <div key={cartItem.id}>
                                                 <div className="grid grid-cols-3 gap-2">

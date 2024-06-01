@@ -10,10 +10,10 @@ export default function MenuDropdown() {
         <div className="text-right z-20">
             <Menu as="div" className="relative inline-block text-left">
                 <div>
-                    <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium hover:text-violet-100 text-[#071c69] hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                    <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-medium hover:text-violet-100 text-[#071c69] hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                         Về Hải Sản Hoàng Gia
                         <ChevronDown
-                            className="-mr-1 ml-2 h-5 w-5 text-[#071c69] hover:text-violet-100"
+                            className="-mr-1 h-5 w-5 text-[#071c69] hover:text-violet-100"
                             aria-hidden="true"
                         />
                     </Menu.Button>

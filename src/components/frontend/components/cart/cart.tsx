@@ -4,7 +4,7 @@
 
 import React, { useContext } from "react";
 
-import CartContext from "@/lib/context/cartContext";
+import CartContext, { ICart, useCart } from "@/lib/context/cartContext";
 import Link from "next/link";
 import BreadCrumb from "../breadCrumb/breadCrumb";
 import { ArrowBigLeft, Minus, MoveLeft, Plus, Trash } from "lucide-react";
@@ -13,11 +13,9 @@ import { Textarea } from "@/components/ui/textarea";
 import CarouselPostGeneral from "../carouselMultiple/carouselPostGeneral";
 
 const Cart = () => {
-    //@ts-ignore
-    const { addItemToCart, deleteItemFromCart, cart } = useContext(CartContext);
+    const { addItemToCart, deleteItemFromCart, cart } = useCart();
 
-    //@ts-ignore
-    const increaseQty = (cartItem) => {
+    const increaseQty = (cartItem: ICart) => {
         const newQty = cartItem?.quantity + 1;
         const item = { ...cartItem, quantity: newQty };
 
@@ -26,8 +24,7 @@ const Cart = () => {
         addItemToCart(item);
     };
 
-    //@ts-ignore
-    const decreaseQty = (cartItem) => {
+    const decreaseQty = (cartItem: ICart) => {
         const newQty = cartItem?.quantity - 1;
         const item = { ...cartItem, quantity: newQty };
 
@@ -36,10 +33,8 @@ const Cart = () => {
         addItemToCart(item);
     };
 
-    const amountWithoutTax = cart?.cartItems?.reduce(
-        //@ts-ignore
-        (acc, item) => acc + item.quantity * item.price,
-        0
+    const amountWithoutTax = cart?.reduce(
+        (acc, item) => acc + item.quantity * item.price, 0
     );
 
     const taxAmount = (amountWithoutTax * 0.15).toFixed(2);
@@ -59,21 +54,20 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="text-2xl font-bold">Giỏ hàng của bạn</div>
-                <div>Có {cart?.cartItems?.length || 0} sản phẩm trong giỏ hàng</div>
+                <div>Có {cart?.length || 0} sản phẩm trong giỏ hàng</div>
                 <div className="tems-center text-center flex justify-center">
                     <div className="h-1.5 bg-blue-500 w-40"></div>
                 </div>
             </div>
 
-            {cart?.cartItems?.length > 0 ? (
+            {cart?.length > 0 ? (
                 <section className="py-10">
                     <div className="container max-w-screen-xl mx-auto px-4">
                         <div className="flex flex-col md:flex-row gap-4">
                             <main className="md:w-3/4">
                                 <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
                                     {
-                                        //@ts-ignore
-                                        cart?.cartItems?.map((cartItem) => (
+                                        cart?.map((cartItem: ICart) => (
                                             <div>
                                                 <div className="flex flex-wrap lg:flex-row gap-5  mb-4">
                                                     <div className="w-full lg:w-2/5 xl:w-2/4">
@@ -90,8 +84,7 @@ const Cart = () => {
                                                                     </Link>
                                                                 </div>
                                                                 <div className="mt-1 text-gray-400">
-                                                                    {" "}
-                                                                    Seller: {cartItem.seller}
+                                                                    <span> salling: {cartItem.salling}</span>
                                                                 </div>
                                                             </figcaption>
                                                         </figure>
@@ -128,7 +121,7 @@ const Cart = () => {
                                                     <div>
                                                         <div className="leading-5">
                                                             <p className="font-semibold not-italic">
-                                                                {cartItem.price * cartItem.quantity.toFixed(2)}đ
+                                                                {cartItem.price * parseFloat(cartItem?.quantity.toFixed(2))}đ
                                                             </p>
                                                             <small className="text-gray-400">
                                                                 {" "}
@@ -169,12 +162,10 @@ const Cart = () => {
                                         <li className="flex justify-between text-gray-600  mb-1">
                                             <span>Tổng số lượng:</span>
                                             <span className="text-green-500">
-                                                {cart?.cartItems?.reduce(
-                                                    //@ts-ignore
-                                                    (acc, item) => acc + item.quantity,
-                                                    0
-                                                )}{" "}
-                                                (Units)
+                                                {cart?.reduce(
+                                                    (acc, item) => acc + item.quantity, 0
+                                                )}
+                                                <span>Units</span>
                                             </span>
                                         </li>
                                         <li className="flex justify-between text-gray-600  mb-1">

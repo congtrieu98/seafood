@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import NextAuthProvider from "@/lib/auth/Provider";
 import TrpcProvider from "@/lib/trpc/Provider";
 import { cookies } from "next/headers";
+import Header from "@/components/header";
 export default async function AppLayout({
   children,
 }: {
@@ -13,13 +14,19 @@ export default async function AppLayout({
   await checkAuth();
   return (<main>
     <NextAuthProvider>
-      <TrpcProvider cookies={cookies().toString()}><div className="flex h-screen">
-        <Sidebar />
-        <main className="flex-1 md:p-8 pt-2 p-8 overflow-y-auto">
-          <Navbar />
-          {children}
-        </main>
-      </div></TrpcProvider>
+      <TrpcProvider cookies={cookies().toString()}>
+        <div className="flex h-screen">
+          <Sidebar />
+          <main className="flex min-h-screen w-full flex-col bg-muted/40">
+            {/* <Navbar /> */}
+            <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+              <Header />
+              {children}
+            </div>
+
+          </main>
+        </div>
+      </TrpcProvider>
     </NextAuthProvider>
 
     <Toaster richColors position="top-right" />

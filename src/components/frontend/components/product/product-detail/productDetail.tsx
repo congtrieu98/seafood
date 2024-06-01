@@ -23,7 +23,7 @@ import { Separator } from "@/components/ui/separator";
 
 import Link from "next/link";
 import Tabs from "@/components/frontend/components/tabs/tabs";
-import CartContext from "@/lib/context/cartContext"
+import CartContext, { useCart } from "@/lib/context/cartContext"
 
 
 export default function ProductDetail() {
@@ -34,7 +34,7 @@ export default function ProductDetail() {
 
     console.log("checkedOption:", checkedOption)
     //@ts-ignore
-    const { addItemToCart, cart } = useContext(CartContext)
+    const { addItemToCart, cart, deleteItemFromCart } = useCart();
 
     const handleUnIncrement = () => {
         const newQty = qty - 1
@@ -55,16 +55,16 @@ export default function ProductDetail() {
     )
 
     const addToCartHandler = () => {
-        addItemToCart({
+        const newItem = {
             id: 'iyuewtfkjebfkjdhfosdjhvdjsnfg',
             name: 'Ghẹ sống loại 1',
             price: 450000,
             stock: 5,
             image: 'https://product.hstatic.net/1000182631/product/img_3089_62f216fb3eef451ba4d96038b71a7d70_master.jpg',
-            saller: true,
+            salling: true,
             quantity: qty
-
-        })
+        }
+        addItemToCart(newItem);
     }
 
     let price = 690000

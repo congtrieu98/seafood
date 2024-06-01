@@ -1,21 +1,25 @@
 'use client'
 
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
-const CartContext = createContext<ICart[]>({
-  //@ts-ignore
-  cart: [],
-});
 
-interface ICart {
+export interface ICart {
   id: string,
   name: string,
   price: number,
   image: string,
   stock: number,
-  seller: boolean,
-  quantity: number
+  quantity: number,
+  salling: boolean
 }
+
+interface CartContextType {
+  cart: ICart[];
+  addItemToCart: (item: ICart) => void;
+  deleteItemFromCart: (id: string) => void;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
   const [cart, setCart] = useState<ICart[]>([]);
@@ -32,28 +36,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
     );
   };
 
-  const addItemToCart = async ({
-    id,
-    name,
-    price,
-    image,
-    stock,
-    seller,
-    quantity = 1,
-  }: ICart) => {
-    const item = {
-      id,
-      name,
-      price,
-      image,
-      stock,
-      seller,
-      quantity,
-    };
+  const addItemToCart = async (item: ICart) => {
 
-    //@ts-ignore
-    const isItemExist = cart?.cartItems?.find(
-      //@ts-ignore
+    const isItemExist = cart?.find(
+
       (i) => i.id === item.id
     );
 
@@ -61,23 +47,23 @@ export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
 
     if (isItemExist) {
       //@ts-ignore
-      newCartItems = cart?.cartItems?.map((i) =>
+      newCartItems = cart?.map((i) =>
         i.id === isItemExist.id ? item : i
       );
     } else {
       //@ts-ignore
-      newCartItems = [...(cart?.cartItems || []), item];
+      newCartItems = [...cart, item];
     }
 
-    localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }));
+    localStorage.setItem("cart", JSON.stringify(newCartItems));
     setCartToState();
   };
 
   const deleteItemFromCart = (id: string) => {
     // @ts-ignore
-    const newCartItems = cart?.cartItems?.filter((i) => i.id !== id);
+    const newCartItems = cart?.filter((i) => i.id !== id);
 
-    localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }));
+    localStorage.setItem("cart", JSON.stringify(newCartItems));
     setCartToState();
   };
 
@@ -94,5 +80,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
     </CartContext.Provider>
   );
 }
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
 
 export default CartContext;

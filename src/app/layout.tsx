@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/frontend/header/header";
 import Footer from "@/components/frontend/footer/footer";
 import { CartGlobalProvider } from "@/lib/hooks/cartGlobalProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +24,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CartGlobalProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <Header />
-            {
-              children
-            }
-            <Footer />
-          </ThemeProvider>
+          <TooltipProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              <Header />
+              {
+                children
+              }
+              <Footer />
+            </ThemeProvider>
+          </TooltipProvider>
         </CartGlobalProvider>
       </body>
     </html>

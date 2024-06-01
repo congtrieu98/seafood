@@ -18,7 +18,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen relative">
-
       {/* section banner */}
       <section className="w-full flex max-w-screen-xl mx-auto sm:mt-0 mt-[182px]">
         <div className="category">
