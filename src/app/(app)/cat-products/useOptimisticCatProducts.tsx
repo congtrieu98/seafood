@@ -7,7 +7,7 @@ export type TAddOptimistic = (action: OptimisticAction<CatProduct>) => void;
 
 export const useOptimisticCatProducts = (
   catProducts: CompleteCatProduct[],
-  
+
 ) => {
   const [optimisticCatProducts, addOptimisticCatProduct] = useOptimistic(
     catProducts,
@@ -17,16 +17,17 @@ export const useOptimisticCatProducts = (
     ): CompleteCatProduct[] => {
       const { data } = action;
 
-      
+
 
       const optimisticCatProduct = {
         ...data,
-        
+
         id: "optimistic",
       };
 
       switch (action.action) {
         case "create":
+          //@ts-ignore
           return currentState.length === 0
             ? [optimisticCatProduct]
             : [...currentState, optimisticCatProduct];

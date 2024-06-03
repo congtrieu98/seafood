@@ -2,11 +2,9 @@
 import {
     File,
     ListFilter,
-    MoreHorizontal,
     PlusCircle,
 } from "lucide-react"
 import moment from "moment";
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -20,19 +18,11 @@ import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+
 import {
     Tabs,
     TabsContent,
@@ -41,8 +31,19 @@ import {
 } from "@/components/ui/tabs"
 import { CompleteCatProduct } from "@/lib/db/schema/catProducts"
 import { formatDateSlash } from "@/lib/utils";
+import { DataTable } from "./table/data-table";
+import { columns } from "./table/columns";
 
 function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
+    const dataCatProCustom = dataCatPro.map((item) => {
+        return {
+            id: item.id,
+            name: item.name,
+            creator: item.user.name,
+            created_at: moment(item.createdAt).format(formatDateSlash),
+            updated_at: moment(item.updatedAt).format(formatDateSlash)
+        }
+    })
     return (
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             <Tabs defaultValue="all">
@@ -100,54 +101,11 @@ function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead className="hidden md:table-cell">
-                                            Created at
-                                        </TableHead>
-                                        <TableHead>
-                                            <span className="sr-only">Actions</span>
-                                        </TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {
-                                        dataCatPro.map((item) => (
-                                            <TableRow key={item.id}>
-                                                <TableCell className="font-medium">
-                                                    {item.name}
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    {moment(item.createdAt).format(formatDateSlash)}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button
-                                                                aria-haspopup="true"
-                                                                size="icon"
-                                                                variant="ghost"
-                                                            >
-                                                                <MoreHorizontal className="h-4 w-4" />
-                                                                <span className="sr-only">Toggle menu</span>
-                                                            </Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent align="end">
-                                                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                            <DropdownMenuItem>Edit</DropdownMenuItem>
-                                                            <DropdownMenuItem>Delete</DropdownMenuItem>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))
-                                    }
-
-
-                                </TableBody>
-                            </Table>
+                            <DataTable
+                                columns={columns}
+                                //@ts-ignore
+                                data={dataCatProCustom}
+                            />
                         </CardContent>
                         <CardFooter>
                             <div className="text-xs text-muted-foreground">

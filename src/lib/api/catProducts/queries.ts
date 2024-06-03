@@ -4,7 +4,10 @@ import { type CatProductId, catProductIdSchema } from "@/lib/db/schema/catProduc
 
 export const getCatProducts = async () => {
   const { session } = await getUserAuth();
-  const c = await db.catProduct.findMany({ where: { userId: session?.user.id! } });
+  const c = await db.catProduct.findMany(
+    {
+      include: { user: true }
+    });
   return { catProducts: c };
 };
 

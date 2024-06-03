@@ -20,6 +20,9 @@ importers:
       '@prisma/client':
         specifier: 5.12.0
         version: 5.12.0(prisma@5.14.0)
+      '@radix-ui/react-alert-dialog':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-avatar':
         specifier: ^1.0.4
         version: 1.0.4(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -68,6 +71,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@tanstack/react-table':
+        specifier: ^8.17.3
+        version: 8.17.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/client':
         specifier: ^10.37.1
         version: 10.45.2(@trpc/server@10.45.2)
@@ -125,6 +131,9 @@ importers:
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
+      table:
+        specifier: github:tanstack/react-table
+        version: git+https://git@github.com:tanstack/react-table.git#6fde6950b0b9249605f40b46856f478e7503d8e2
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.2.2
@@ -389,6 +398,19 @@ packages:
 
   '@radix-ui/primitive@1.0.1':
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
+
+  '@radix-ui/react-alert-dialog@1.0.5':
+    resolution: {integrity: sha512-OrVIOcZL0tl6xibeuGt5/+UxoT2N27KCFOPjFyfXMnchxSHZ/OW7cCX2nGlIYJrbHK/fczPcFzAwvNBB6XBNMA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
 
   '@radix-ui/react-arrow@1.0.3':
     resolution: {integrity: sha512-wSP+pHsB/jQRaL6voubsQ/ZlrGBHHrOjmBnr19hxYgtS0WvAFwZhK2WP/YY5yF9uKECCEEDGxuLxq1NBK51wFA==}
@@ -861,11 +883,22 @@ packages:
       react-native:
         optional: true
 
+  '@tanstack/react-table@8.17.3':
+    resolution: {integrity: sha512-5gwg5SvPD3lNAXPuJJz1fOCEZYk9/GeBFH3w/hCgnfyszOIzwkwgp5I7Q4MJtn0WECp84b5STQUDdmvGi8m3nA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+
   '@tanstack/react-virtual@3.2.0':
     resolution: {integrity: sha512-OEdMByf2hEfDa6XDbGlZN8qO6bTjlNKqjM3im9JG+u3mCL8jALy0T/67oDI001raUUPh1Bdmfn4ZvPOV5knpcg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  '@tanstack/table-core@8.17.3':
+    resolution: {integrity: sha512-mPBodDGVL+fl6d90wUREepHa/7lhsghg2A3vFpakEhrhtbIlgNAZiMr7ccTgak5qbHqF14Fwy+W1yFWQt+WmYQ==}
+    engines: {node: '>=12'}
 
   '@tanstack/virtual-core@3.2.0':
     resolution: {integrity: sha512-P5XgYoAw/vfW65byBbJQCw+cagdXDT/qH6wmABiLt4v4YBT2q2vqCOhihe+D1Nt325F/S/0Tkv6C5z0Lv+VBQQ==}
@@ -2324,6 +2357,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  table@git+https://git@github.com:tanstack/react-table.git#6fde6950b0b9249605f40b46856f478e7503d8e2:
+    resolution: {commit: 6fde6950b0b9249605f40b46856f478e7503d8e2, repo: git@github.com:tanstack/react-table.git, type: git}
+    version: 0.0.0
+
   tailwind-merge@2.2.2:
     resolution: {integrity: sha512-tWANXsnmJzgw6mQ07nE3aCDkCK4QdT3ThPMCzawoYA2Pws7vSTCvz3Vrjg61jVUGfFZPJzxEP+NimbcW+EdaDw==}
 
@@ -2716,6 +2753,21 @@ snapshots:
   '@radix-ui/primitive@1.0.1':
     dependencies:
       '@babel/runtime': 7.24.1
+
+  '@radix-ui/react-alert-dialog@1.0.5(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.24.1
+      '@radix-ui/primitive': 1.0.1
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.74)(react@18.2.0)
+      '@radix-ui/react-context': 1.0.1(@types/react@18.2.74)(react@18.2.0)
+      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.74)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.74
+      '@types/react-dom': 18.2.23
 
   '@radix-ui/react-arrow@1.0.3(@types/react-dom@18.2.23)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -3224,11 +3276,19 @@ snapshots:
     optionalDependencies:
       react-dom: 18.2.0(react@18.2.0)
 
+  '@tanstack/react-table@8.17.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@tanstack/table-core': 8.17.3
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@tanstack/react-virtual@3.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@tanstack/virtual-core': 3.2.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+
+  '@tanstack/table-core@8.17.3': {}
 
   '@tanstack/virtual-core@3.2.0': {}
 
@@ -4865,6 +4925,8 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  table@git+https://git@github.com:tanstack/react-table.git#6fde6950b0b9249605f40b46856f478e7503d8e2: {}
 
   tailwind-merge@2.2.2:
     dependencies:
