@@ -67,7 +67,7 @@ export default function CatProductList({
         //     />
         //   ))}
         // </ul>
-        <CatPro dataCatPro={optimisticCatProducts} />
+        <CatPro dataCatPro={optimisticCatProducts} openModal={openModal} />
       )}
     </div>
   );

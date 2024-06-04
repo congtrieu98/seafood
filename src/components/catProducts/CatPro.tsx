@@ -14,14 +14,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 import {
     Tabs,
@@ -29,19 +21,21 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import { CompleteCatProduct } from "@/lib/db/schema/catProducts"
+import { CatProduct, CompleteCatProduct } from "@/lib/db/schema/catProducts"
 import { formatDateSlash } from "@/lib/utils";
 import { DataTable } from "./table/data-table";
 import { columns } from "./table/columns";
 
-function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
+type TOpenModal = (catProduct?: CatProduct) => void;
+
+function CatPro({ dataCatPro, openModal }: { dataCatPro: CompleteCatProduct[], openModal: TOpenModal }) {
     const dataCatProCustom = dataCatPro.map((item) => {
         return {
-            id: item.id,
-            name: item.name,
-            creator: item.user.name,
-            created_at: moment(item.createdAt).format(formatDateSlash),
-            updated_at: moment(item.updatedAt).format(formatDateSlash)
+            id: item?.id,
+            name: item?.name,
+            creator: item.user?.name,
+            created_at: moment(item?.createdAt).format(formatDateSlash),
+            updated_at: moment(item?.updatedAt).format(formatDateSlash)
         }
     })
     return (
@@ -57,7 +51,8 @@ function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
                         </TabsTrigger>
                     </TabsList>
                     <div className="ml-auto flex items-center gap-2">
-                        <DropdownMenu>
+                        {/* Fillter */}
+                        {/* <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" size="sm" className="h-7 gap-1">
                                     <ListFilter className="h-3.5 w-3.5" />
@@ -77,17 +72,17 @@ function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
                                     Archived
                                 </DropdownMenuCheckboxItem>
                             </DropdownMenuContent>
-                        </DropdownMenu>
+                        </DropdownMenu> */}
                         <Button size="sm" variant="outline" className="h-7 gap-1">
                             <File className="h-3.5 w-3.5" />
                             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                                 Export
                             </span>
                         </Button>
-                        <Button size="sm" className="h-7 gap-1">
+                        <Button size="sm" className="h-7 gap-1" onClick={() => openModal()}>
                             <PlusCircle className="h-3.5 w-3.5" />
                             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                                Add Product
+                                Thêm danh mục
                             </span>
                         </Button>
                     </div>
@@ -95,9 +90,9 @@ function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
                 <TabsContent value="all">
                     <Card x-chunk="dashboard-06-chunk-0">
                         <CardHeader>
-                            <CardTitle>Products</CardTitle>
+                            <CardTitle>Danh mục sản phẩm</CardTitle>
                             <CardDescription>
-                                Manage your products and view their sales performance.
+                                Quản lý danh mục sản phẩm trong hệ thống bán hàng của bạn.
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -107,12 +102,12 @@ function CatPro({ dataCatPro }: { dataCatPro: CompleteCatProduct[] }) {
                                 data={dataCatProCustom}
                             />
                         </CardContent>
-                        <CardFooter>
+                        {/* <CardFooter>
                             <div className="text-xs text-muted-foreground">
                                 Showing <strong>1-10</strong> of <strong>32</strong>{" "}
                                 products
                             </div>
-                        </CardFooter>
+                        </CardFooter> */}
                     </Card>
                 </TabsContent>
             </Tabs>

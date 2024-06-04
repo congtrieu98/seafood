@@ -1,21 +1,27 @@
 "use client"
 
+import Modal from "@/components/shared/Modal";
 import { Checkbox } from "@/components/ui/checkbox";
+import { CatProduct, CompleteCatProduct } from "@/lib/db/schema/catProducts";
 import { ColumnDef } from "@tanstack/react-table";
+import CatProductForm from "../CatProductForm";
+import { useOptimistic, useState } from "react";
+import { TAddOptimistic } from "@/app/(app)/cat-products/useOptimisticCatProducts";
+import { Button } from "@/components/ui/button";
 
 export type CatProductColumns = {
     id: string;
     name: string;
-    created_at: Date;
-    updated_at: Date;
-    creator: string;
-    // user: {
-    //     id: string;
-    //     name: string | null;
-    //     email: string | null;
-    //     emailVerified: Date | null;
-    //     image: string | null;
-    // };
+    userId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    user: {
+        id: string;
+        name: string | null;
+        email: string | null;
+        emailVerified: Date | null;
+        image: string | null;
+    };
 }
 
 export const columns: ColumnDef<CatProductColumns>[] = [
@@ -64,30 +70,42 @@ export const columns: ColumnDef<CatProductColumns>[] = [
     {
         accessorKey: "Action",
         cell: ({ row }) => {
-            const consultant = row.original;
-            //   return <Consultant consultant={consultant} />;
+            const catProduct = row.original;
+            return <CatProduct catProduct={catProduct} />;
         },
     },
 ]
 
-// const Consultant = ({
-//     consultant,
-//   }: // openModal,
-//   {
-//     consultant: CompleteConsultant;
-//     // openModal: TOpenModal;
-//   }) => {
-//     // const optimistic = consultant.id === "optimistic";
-//     // const deleting = consultant.id === "delete";
-//     // const mutating = optimistic || deleting;
-//     const pathname = usePathname();
-//     const basePath = pathname.includes("consultants")
-//       ? pathname
-//       : pathname + "/consultants/";
-  
-//     return (
-//       <Button variant={"link"} asChild>
-//         <Link href={basePath + "/" + consultant.id}>Details</Link>
-//       </Button>
-//     );
-//   };
+const CatProduct = ({
+    catProduct,
+}: {
+    catProduct: CompleteCatProduct;
+}) => {
+
+    const [open, setOpen] = useState(false);
+    const openModal = (_?: CatProduct) => {
+        setOpen(true)
+    };
+    const closeModal = () => setOpen(false);
+    const [optimisticCatProduct, setOptimisticCatProduct] = useOptimistic(catProduct);
+    const updateCatProduct: TAddOptimistic = (input) =>
+        // @ts-ignore
+        setOptimisticCatProduct({ ...input.data });
+
+
+    return (
+        <div className="m-4">
+            <Modal open={open} setOpen={setOpen}>
+                <CatProductForm
+                    catProduct={optimisticCatProduct}
+                    closeModal={closeModal}
+                    openModal={openModal}
+                    addOptimistic={updateCatProduct}
+                />
+            </Modal>
+            <Button variant={"link"} onClick={() => setOpen(true)}>
+                Edit
+            </Button>
+        </div>
+    );
+};
