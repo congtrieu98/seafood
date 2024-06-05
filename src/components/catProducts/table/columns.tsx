@@ -71,12 +71,12 @@ export const columns: ColumnDef<CatProductColumns>[] = [
         accessorKey: "Action",
         cell: ({ row }) => {
             const catProduct = row.original;
-            return <CatProduct catProduct={catProduct} />;
+            return <CatProductAction catProduct={catProduct} />;
         },
     },
 ]
 
-const CatProduct = ({
+const CatProductAction = ({
     catProduct,
 }: {
     catProduct: CompleteCatProduct;
@@ -95,7 +95,7 @@ const CatProduct = ({
 
     return (
         <div className="m-4">
-            <Modal open={open} setOpen={setOpen}>
+            <Modal open={open} setOpen={setOpen} title="Chỉnh sữa danh mục">
                 <CatProductForm
                     catProduct={optimisticCatProduct}
                     closeModal={closeModal}

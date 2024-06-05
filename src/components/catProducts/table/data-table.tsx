@@ -35,6 +35,7 @@ import {
 import { Action } from "@/lib/utils";
 import { CatProductColumns } from "./columns";
 import { TAddOptimistic } from "@/app/(app)/cat-products/useOptimisticCatProducts";
+import { deleteCatProductAction } from "@/lib/actions/catProducts";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -73,7 +74,7 @@ export function DataTable<TData, TValue>({
       });
     } else {
       setRowSelection({});
-      toast.success(`Consultant ${action}d!`);
+      toast.success(`Xóa danh mục sản phẩm thành công`);
     }
   };
 
@@ -99,6 +100,7 @@ export function DataTable<TData, TValue>({
           type="text"
           value={filtering}
           onChange={(e) => setFiltering(e.target.value)}
+          disabled={pending}
           className="max-w-sm"
         />
         {table.getFilteredSelectedRowModel().rows.length > 0 && (
@@ -123,19 +125,18 @@ export function DataTable<TData, TValue>({
                         updatePage &&
                           updatePage({
                             action: "delete",
-                            //@ts-ignore
-                            data: item.original,
+                            data: item.original as CatProductColumns,
                           });
-                        // const error = await deleteConsultantAction(
-                        //   //@ts-ignore
-                        //   item.original.id
-                        // );
-                        // const errorFormatted = {
-                        //   error: error ?? "Error",
-                        //   values: item.original,
-                        // };
+                        const error = await deleteCatProductAction(
+                          //@ts-ignore
+                          item.original.id
+                        );
+                        const errorFormatted = {
+                          error: error ?? "Error",
+                          values: item.original,
+                        };
 
-                        // onSuccess("delete", error ? errorFormatted : undefined);
+                        onSuccess("delete", error ? errorFormatted : undefined);
                       });
                     });
                   }}

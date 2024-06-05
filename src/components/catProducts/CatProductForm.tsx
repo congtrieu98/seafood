@@ -25,7 +25,6 @@ import {
 
 
 const CatProductForm = ({
-  
   catProduct,
   openModal,
   closeModal,
@@ -33,7 +32,7 @@ const CatProductForm = ({
   postSuccess,
 }: {
   catProduct?: CatProduct | null;
-  
+
   openModal?: (catProduct?: CatProduct) => void;
   closeModal?: () => void;
   addOptimistic?: TAddOptimistic;
@@ -42,7 +41,7 @@ const CatProductForm = ({
   const { errors, hasErrors, setErrors, handleChange } =
     useValidatedForm<CatProduct>(insertCatProductParams);
   const editing = !!catProduct?.id;
-  
+
   const [isDeleting, setIsDeleting] = useState(false);
   const [pending, startMutation] = useTransition();
 
@@ -72,7 +71,7 @@ const CatProductForm = ({
     setErrors(null);
 
     const payload = Object.fromEntries(data.entries());
-    const catProductParsed = await insertCatProductParams.safeParseAsync({  ...payload });
+    const catProductParsed = await insertCatProductParams.safeParseAsync({ ...payload });
     if (!catProductParsed.success) {
       setErrors(catProductParsed?.error.flatten().fieldErrors);
       return;
@@ -100,7 +99,7 @@ const CatProductForm = ({
 
         const errorFormatted = {
           error: error ?? "Error",
-          values: pendingCatProduct 
+          values: pendingCatProduct
         };
         onSuccess(
           editing ? "update" : "create",
@@ -115,9 +114,9 @@ const CatProductForm = ({
   };
 
   return (
-    <form action={handleSubmit} onChange={handleChange} className={"space-y-8"}>
+    <form action={handleSubmit} onChange={handleChange}>
       {/* Schema fields start */}
-              <div>
+      <div>
         <Label
           className={cn(
             "mb-2 inline-block",
